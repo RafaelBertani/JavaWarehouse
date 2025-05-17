@@ -1,8 +1,10 @@
 package mainPanels;
 import java.awt.Color;
+import java.awt.Font;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
-import screen.Screen;
+import screen.ScreenFunctions;
 import subPanels.AddPanel;
 import subPanels.EditPanel;
 import subPanels.ExportPanel;
@@ -21,6 +23,8 @@ public class CENTERpanel {
     private JPanel mySearchPanel;
     private JPanel mySortPanel;
     private JPanel myExportPanel;
+
+    private JLabel title = new JLabel();
 
     public JPanel getPanel() {
         return panel;
@@ -61,8 +65,10 @@ public class CENTERpanel {
         panel.setLayout(null);
         panel.setOpaque(true);
         panel.setBackground(new Color(32,32,32));
-        panel.setBorder(new LineBorder(Color.WHITE, 2));
-        panel.addMouseListener(Screen.myMouseListener);
+        panel.setBorder(new LineBorder(new Color(0,0,172), 2));
+
+        ScreenFunctions.label_setup(title, "Gerenciamento do armazém", false, 0, 0, 7*WIDTH/10, HEIGHT/15, panel);
+        ScreenFunctions.label_edit(title,new Font("Arial",Font.PLAIN,25),null,Color.WHITE);
 
         //instancia todos os subpanels para futuro uso
         myAddPanel = new AddPanel(7*WIDTH/10, 6*HEIGHT/10).getPanel();

@@ -64,6 +64,10 @@ public class BUTTONSpanel {
         ADICIONARbutton.setFocusable(false);
         ADICIONARbutton.setBorder(null);
         ADICIONARbutton.addMouseListener(Screen.myMouseListener);
+        //remover preenchimento automático de fundo quando clicar
+        ADICIONARbutton.setFocusPainted(false);
+        ADICIONARbutton.setContentAreaFilled(false);
+        ADICIONARbutton.setOpaque(true);
         panel.add(ADICIONARbutton);
 
         EDITARbutton = new JButton();
@@ -72,6 +76,10 @@ public class BUTTONSpanel {
         EDITARbutton.setFocusable(false);
         EDITARbutton.setBorder(null);
         EDITARbutton.addMouseListener(Screen.myMouseListener);
+        //remover preenchimento automático de fundo quando clicar
+        EDITARbutton.setFocusPainted(false);
+        EDITARbutton.setContentAreaFilled(false);
+        EDITARbutton.setOpaque(true);
         panel.add(EDITARbutton);
 
         REMOVERbutton = new JButton();
@@ -80,6 +88,10 @@ public class BUTTONSpanel {
         REMOVERbutton.setFocusable(false);
         REMOVERbutton.setBorder(null);
         REMOVERbutton.addMouseListener(Screen.myMouseListener);
+        //remover preenchimento automático de fundo quando clicar
+        REMOVERbutton.setFocusPainted(false);
+        REMOVERbutton.setContentAreaFilled(false);
+        REMOVERbutton.setOpaque(true);
         panel.add(REMOVERbutton);
 
         TABELAbutton = new JButton();
@@ -88,6 +100,10 @@ public class BUTTONSpanel {
         TABELAbutton.setFocusable(false);
         TABELAbutton.setBorder(null);
         TABELAbutton.addMouseListener(Screen.myMouseListener);
+        //remover preenchimento automático de fundo quando clicar
+        TABELAbutton.setFocusPainted(false);
+        TABELAbutton.setContentAreaFilled(false);
+        TABELAbutton.setOpaque(true);
         panel.add(TABELAbutton);
 
         BUSCARbutton = new JButton();
@@ -96,6 +112,10 @@ public class BUTTONSpanel {
         BUSCARbutton.setFocusable(false);
         BUSCARbutton.setBorder(null);
         BUSCARbutton.addMouseListener(Screen.myMouseListener);
+        //remover preenchimento automático de fundo quando clicar
+        BUSCARbutton.setFocusPainted(false);
+        BUSCARbutton.setContentAreaFilled(false);
+        BUSCARbutton.setOpaque(true);
         panel.add(BUSCARbutton);
 
         ORDENARbutton = new JButton();
@@ -104,6 +124,10 @@ public class BUTTONSpanel {
         ORDENARbutton.setFocusable(false);
         ORDENARbutton.setBorder(null);
         ORDENARbutton.addMouseListener(Screen.myMouseListener);
+        //remover preenchimento automático de fundo quando clicar
+        ORDENARbutton.setFocusPainted(false);
+        ORDENARbutton.setContentAreaFilled(false);
+        ORDENARbutton.setOpaque(true);
         panel.add(ORDENARbutton);
 
         EXPORTARbutton = new JButton();
@@ -112,6 +136,10 @@ public class BUTTONSpanel {
         EXPORTARbutton.setFocusable(false);
         EXPORTARbutton.setBorder(null);
         EXPORTARbutton.addMouseListener(Screen.myMouseListener);
+        //remover preenchimento automático de fundo quando clicar
+        EXPORTARbutton.setFocusPainted(false);
+        EXPORTARbutton.setContentAreaFilled(false);
+        EXPORTARbutton.setOpaque(true);
         panel.add(EXPORTARbutton);
         
     }

@@ -40,8 +40,12 @@ public class Screen extends JFrame{
     public static MyMouseListener myMouseListener = new MyMouseListener();
     // private MyMouseListenerDragDrop myMouseListenerDragDrop = new MyMouseListenerDragDrop();
     
-    public void create_MAIN_FRAME(){
+    public Screen(int width, int height){
 
+        this.WIDTH=width;
+        this.HEIGHT=height;
+
+        //CREATE JFRAME
         my_CENTERpanel = new CENTERpanel(WIDTH,HEIGHT);
         MAINpanel.add(my_CENTERpanel.getPanel());
 
@@ -56,16 +60,6 @@ public class Screen extends JFrame{
 
         ScreenFunctions.frame_setup(MAINframe, true, JFrame.EXIT_ON_CLOSE, WIDTH, HEIGHT);
         ScreenFunctions.frame_edit(MAINframe, "Gerenciamento de armazém", new Color(32,32,32));
-
-    }
-
-    public Screen(int width, int height){
-
-        this.WIDTH=width;
-        this.HEIGHT=height;
-
-        //CREATE JFRAME
-        create_MAIN_FRAME();
         
     }
 

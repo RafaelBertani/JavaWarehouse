@@ -47,8 +47,7 @@ public class LOGSpanel {
         panel.setLayout(null);
         panel.setOpaque(true);
         panel.setBackground(new Color(32,32,32));
-        panel.setBorder(new LineBorder(Color.WHITE, 2));
-        panel.addMouseListener(Screen.myMouseListener);
+        panel.setBorder(new LineBorder(new Color(0,0,172), 2));
 
         ScreenFunctions.label_setup(titleLABEL, "Histórico de comandos na base de dados", false, 0, 0, 7*WIDTH/10, 6*HEIGHT/100, panel);
         ScreenFunctions.label_edit(titleLABEL, new Font("Arial",Font.PLAIN,20), null, Color.WHITE);
