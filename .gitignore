@@ -1,3 +1,9 @@
+# VS Code settings
+.vscode/
+
+# Build output
+bin/
+
 # Compiled class file
 *.class
 
