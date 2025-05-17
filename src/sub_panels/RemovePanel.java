@@ -1,4 +1,4 @@
-package subPanels;
+package sub_panels;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import screen.ScreenFunctions;
 
-public class SearchPanel{
+public class RemovePanel{
     
     public JPanel getPanel() {
         return panel;
@@ -17,7 +17,7 @@ public class SearchPanel{
     public JLabel title = new JLabel();
     public JLabel subtitle = new JLabel();
     
-    public SearchPanel(int WIDTH, int HEIGHT){
+    public RemovePanel(int WIDTH, int HEIGHT){
 
         panel.setBounds(0,0, WIDTH, HEIGHT);
         panel.setLayout(null);
@@ -28,7 +28,7 @@ public class SearchPanel{
         ScreenFunctions.label_setup(title, "Gerenciamento do armazém", false, 0, 0, WIDTH, 10*HEIGHT/85-3, panel);
         ScreenFunctions.label_edit(title,new Font("Arial",Font.PLAIN,25),null,Color.WHITE);
         
-        ScreenFunctions.label_setup(subtitle, "Buscar item", false, 0, HEIGHT/10, WIDTH, HEIGHT/8, panel);
+        ScreenFunctions.label_setup(subtitle, "Remover item", false, 0, HEIGHT/10, WIDTH, HEIGHT/8, panel);
         ScreenFunctions.label_edit(subtitle,new Font("Arial",Font.PLAIN,20),null,Color.WHITE);
 
     }

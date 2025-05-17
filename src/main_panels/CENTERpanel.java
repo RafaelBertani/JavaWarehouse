@@ -1,17 +1,17 @@
-package mainPanels;
+package main_panels;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import screen.ScreenFunctions;
-import subPanels.AddPanel;
-import subPanels.EditPanel;
-import subPanels.ExportPanel;
-import subPanels.RemovePanel;
-import subPanels.SearchPanel;
-import subPanels.SortPanel;
-import subPanels.TablePanel;
+import sub_panels.AddPanel;
+import sub_panels.EditPanel;
+import sub_panels.ExportPanel;
+import sub_panels.RemovePanel;
+import sub_panels.SearchPanel;
+import sub_panels.SortPanel;
+import sub_panels.TablePanel;
 
 public class CENTERpanel {
 

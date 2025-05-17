@@ -1,4 +1,4 @@
-package subPanels;
+package sub_panels;
 
 import java.awt.Color;
 import java.awt.Font;

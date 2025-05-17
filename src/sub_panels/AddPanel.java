@@ -1,4 +1,4 @@
-package subPanels;
+package sub_panels;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -30,6 +30,12 @@ public class AddPanel{
         
         ScreenFunctions.label_setup(subtitle, "Adicionar item", false, 0, HEIGHT/10, WIDTH, HEIGHT/8, panel);
         ScreenFunctions.label_edit(subtitle,new Font("Arial",Font.PLAIN,20),null,Color.WHITE);
+
+        // Queries.adicionar_item(new Item("nome",123.45,"marca A", new Date(System.currentTimeMillis()),123,456));
+        // Queries.editar_item(5, "validade", "2012-02-12");
+        // Queries.remove_item(3);
+        // System.out.println(Queries.retorna_tabela().get(3).getIndex());
+        // System.out.println(Queries.retorna_busca("validade", "=", "2012-02-12").get(0).getValidade());
 
     }
 

@@ -3,15 +3,11 @@ import java.awt.Color;
 import javax.swing.*;
 import listeners.MyActionListener;
 import listeners.MyMouseListener;
-import mainPanels.BUTTONSpanel;
-import mainPanels.CENTERpanel;
-import mainPanels.LOGSpanel;
+import main_panels.BUTTONSpanel;
+import main_panels.CENTERpanel;
+import main_panels.LOGSpanel;
 
 public class Screen extends JFrame{
-
-    //SCREEN SIZE VARIABLES
-    private static int WIDTH;
-    private static int HEIGHT;
 
     //JCOMPONENTS
     private static JFrame MAINframe = new JFrame();
@@ -38,12 +34,8 @@ public class Screen extends JFrame{
     // private MyKeyListener myKeyListener = new MyKeyListener();
     // private MyItemListener myItemListener = new MyItemListener();
     public static MyMouseListener myMouseListener = new MyMouseListener();
-    // private MyMouseListenerDragDrop myMouseListenerDragDrop = new MyMouseListenerDragDrop();
     
-    public Screen(int width, int height){
-
-        this.WIDTH=width;
-        this.HEIGHT=height;
+    public Screen(int WIDTH, int HEIGHT){
 
         //CREATE JFRAME
         my_CENTERpanel = new CENTERpanel(WIDTH,HEIGHT);
