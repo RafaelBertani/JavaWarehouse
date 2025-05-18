@@ -8,7 +8,9 @@ import java.util.ArrayList;
 
 public class Queries {
     
-    public static void adicionar_item(Item i){
+    public static boolean adicionar_item(Item i){
+
+        boolean successful = true;
 
         Connection c = Database.getConnection();
         PreparedStatement pstm = null;
@@ -26,13 +28,19 @@ public class Queries {
             pstm = c.prepareStatement("SELECT MAX( id ) FROM produtos;");
             resultQUERY = pstm.executeQuery();
             resultQUERY.next();
-            
+
         }catch(SQLException e){
             e.printStackTrace();
+            successful = false;
         }finally{Database.closeConnection(c);}    
+    
+        return successful;
+
     }
 
-    public static void editar_item(int id, String coluna, String novaINFO){
+    public static boolean editar_item(int id, String coluna, String novaINFO){
+
+        boolean successful = true;
 
         Connection c = Database.getConnection();
         PreparedStatement pstm = null;
@@ -42,11 +50,16 @@ public class Queries {
             
         }catch(SQLException e){
             e.printStackTrace();
+            successful = false;
         }finally{Database.closeConnection(c);}
         
+        return successful;
+
     }
 
-    public static void remove_item(int id){
+    public static boolean remove_item(int id){
+
+        boolean successful = true;
 
         Connection c = Database.getConnection();
         PreparedStatement pstm = null;
@@ -56,7 +69,10 @@ public class Queries {
 
         }catch(SQLException e){
             e.printStackTrace();
+            successful = false;
         }finally{Database.closeConnection(c);}
+
+        return successful;
         
     }
 
@@ -82,7 +98,7 @@ public class Queries {
                     resultQUERY.getInt(6), //quant
                     resultQUERY.getInt(7) //setor
                 );
-                novo.setIndex(resultQUERY.getInt(1));
+                novo.setId(resultQUERY.getInt(1));
                 resultados.add(novo);
             }
 
@@ -115,7 +131,7 @@ public class Queries {
                     resultQUERY.getInt(7) //quant
 
                 );
-                novo.setIndex(resultQUERY.getInt(1));
+                novo.setId(resultQUERY.getInt(1));
                 resultados.add(novo);
             }
 

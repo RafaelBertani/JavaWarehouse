@@ -16,13 +16,13 @@ import sub_panels.TablePanel;
 public class CENTERpanel {
 
     private JPanel panel;
-    private JPanel myAddPanel;
-    private JPanel myEditPanel;
-    private JPanel myRemovePanel;
-    private JPanel myTablePanel;
-    private JPanel mySearchPanel;
-    private JPanel mySortPanel;
-    private JPanel myExportPanel;
+    private AddPanel myAddPanel;
+    private EditPanel myEditPanel;
+    private RemovePanel myRemovePanel;
+    private TablePanel myTablePanel;
+    private SearchPanel mySearchPanel;
+    private SortPanel mySortPanel;
+    private ExportPanel myExportPanel;
 
     private JLabel title = new JLabel();
 
@@ -30,33 +30,13 @@ public class CENTERpanel {
         return panel;
     }
 
-    public JPanel getMyAddPanel() {
-        return myAddPanel;
-    }
-
-    public JPanel getMyEditPanel() {
-        return myEditPanel;
-    }
-
-    public JPanel getMyRemovePanel() {
-        return myRemovePanel;
-    }
-
-    public JPanel getMyTablePanel() {
-        return myTablePanel;
-    }
-
-    public JPanel getMySearchPanel() {
-        return mySearchPanel;
-    }
-
-    public JPanel getMySortPanel() {
-        return mySortPanel;
-    }
-
-    public JPanel getMyExportPanel() {
-        return myExportPanel;
-    }
+    public AddPanel getMyAddPanel() { return myAddPanel; }
+    public EditPanel getMyEditPanel() { return myEditPanel; }
+    public RemovePanel getMyRemovePanel() { return myRemovePanel; }
+    public TablePanel getMyTablePanel() { return myTablePanel; }
+    public SearchPanel getMySearchPanel() { return mySearchPanel; }
+    public SortPanel getMySortPanel() { return mySortPanel; }
+    public ExportPanel getMyExportPanel() { return myExportPanel; }
 
     public CENTERpanel(int WIDTH, int HEIGHT){
 
@@ -71,13 +51,13 @@ public class CENTERpanel {
         ScreenFunctions.label_edit(title,new Font("Arial",Font.PLAIN,25),null,Color.WHITE);
 
         //instancia todos os subpanels para futuro uso
-        myAddPanel = new AddPanel(7*WIDTH/10, 6*HEIGHT/10).getPanel();
-        myEditPanel = new EditPanel(7*WIDTH/10, 6*HEIGHT/10).getPanel();
-        myRemovePanel = new RemovePanel(7*WIDTH/10, 6*HEIGHT/10).getPanel();
-        myTablePanel = new TablePanel(7*WIDTH/10, 6*HEIGHT/10).getPanel();
-        mySearchPanel = new SearchPanel(7*WIDTH/10, 6*HEIGHT/10).getPanel();
-        mySortPanel = new SortPanel(7*WIDTH/10, 6*HEIGHT/10).getPanel();
-        myExportPanel = new ExportPanel(7*WIDTH/10, 6*HEIGHT/10).getPanel();
+        myAddPanel = new AddPanel(7*WIDTH/10, 6*HEIGHT/10);
+        myEditPanel = new EditPanel(7*WIDTH/10, 6*HEIGHT/10);
+        myRemovePanel = new RemovePanel(7*WIDTH/10, 6*HEIGHT/10);
+        myTablePanel = new TablePanel(7*WIDTH/10, 6*HEIGHT/10);
+        mySearchPanel = new SearchPanel(7*WIDTH/10, 6*HEIGHT/10);
+        mySortPanel = new SortPanel(7*WIDTH/10, 6*HEIGHT/10);
+        myExportPanel = new ExportPanel(7*WIDTH/10, 6*HEIGHT/10);
 
     }
 

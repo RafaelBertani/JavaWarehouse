@@ -14,8 +14,8 @@ public class RemovePanel{
     }
 
     private JPanel panel = new JPanel();
-    public JLabel title = new JLabel();
-    public JLabel subtitle = new JLabel();
+    private JLabel title = new JLabel();
+    private JLabel subtitle = new JLabel();
     
     public RemovePanel(int WIDTH, int HEIGHT){
 

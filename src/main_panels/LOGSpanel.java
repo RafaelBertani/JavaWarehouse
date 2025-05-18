@@ -92,11 +92,11 @@ public class LOGSpanel {
         table.setBackground(new Color(64,64,64));
         table.setForeground(Color.WHITE);
 
-        //atualiza_table();
+        //update_table();
 
     }
 
-    public void atualiza_table(){
+    public void update_table(){
 
         table.removeAll();
         panelTABLE.removeAll();

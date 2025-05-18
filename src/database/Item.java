@@ -10,7 +10,7 @@ public class Item{
     private String marca;
     private Date validade;
     private int setor;
-    private int index=0;
+    private int id=-1;
 
     public Item(String nome, double preco, String marca, Date validade, int quantidade, int setor){
         this.nome=nome;
@@ -27,7 +27,7 @@ public class Item{
     public String getMarca() { return marca; }
     public Date getValidade() { return validade; }
     public int getSetor() { return setor; }
-    public int getIndex() { return index; }
+    public int getId() { return id; }
 
     public void setQuantidade(int quantidade) { this.quantidade = quantidade; }
     public void setPreco(double preco) { this.preco = preco; }
@@ -35,6 +35,6 @@ public class Item{
     public void setMarca(String marca) { this.marca = marca; }
     public void setValidade(Date validade) { this.validade = validade; }
     public void setSetor(int setor) { this.setor = setor; }
-    public void setIndex(int index) { this.index = index; }
+    public void setId(int id) { this.id = id; }
 
 }

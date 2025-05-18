@@ -27,9 +27,9 @@ public class Database {
     public static String url = "jdbc:mysql://localhost:3306/";
     public static String databaseName = "my_db";
     public static String userName = "root";
-    public static String password = ""; //"mysqlimt -> senha padrão nos computadores da mauá";
+    public static String password = ""; //"mysqlimt";
 
-        public static void criaDATABASE() throws Exception{
+    public static void criaDATABASE() throws Exception{
         
         try {
 
