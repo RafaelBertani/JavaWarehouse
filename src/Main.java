@@ -7,9 +7,16 @@ public class Main{
 
     public static void main(String[] args) {
     
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int width = (int) screenSize.getWidth();
-        int height = (int) screenSize.getHeight();
+        int width = -1;
+        int height = -1;
+
+        try {
+            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+            width = (int) screenSize.getWidth();
+            height = (int) screenSize.getHeight();   
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         if(width<1200 || height<600){
             width=1200;

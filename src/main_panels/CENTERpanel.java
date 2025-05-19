@@ -7,7 +7,6 @@ import javax.swing.border.LineBorder;
 import screen.ScreenFunctions;
 import sub_panels.AddPanel;
 import sub_panels.EditPanel;
-import sub_panels.ExportPanel;
 import sub_panels.RemovePanel;
 import sub_panels.SearchPanel;
 import sub_panels.SortPanel;
@@ -22,7 +21,6 @@ public class CENTERpanel {
     private TablePanel myTablePanel;
     private SearchPanel mySearchPanel;
     private SortPanel mySortPanel;
-    private ExportPanel myExportPanel;
 
     private JLabel title = new JLabel();
 
@@ -36,8 +34,7 @@ public class CENTERpanel {
     public TablePanel getMyTablePanel() { return myTablePanel; }
     public SearchPanel getMySearchPanel() { return mySearchPanel; }
     public SortPanel getMySortPanel() { return mySortPanel; }
-    public ExportPanel getMyExportPanel() { return myExportPanel; }
-
+    
     public CENTERpanel(int WIDTH, int HEIGHT){
 
         panel = new JPanel();
@@ -57,8 +54,7 @@ public class CENTERpanel {
         myTablePanel = new TablePanel(7*WIDTH/10, 6*HEIGHT/10);
         mySearchPanel = new SearchPanel(7*WIDTH/10, 6*HEIGHT/10);
         mySortPanel = new SortPanel(7*WIDTH/10, 6*HEIGHT/10);
-        myExportPanel = new ExportPanel(7*WIDTH/10, 6*HEIGHT/10);
-
+        
     }
 
 }

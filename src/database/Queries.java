@@ -142,4 +142,26 @@ public class Queries {
         return resultados;
     }
 
+    public static String retorna_valor_especifico(int id, String nome_coluna){
+        
+        String result = "";
+
+        Connection c = Database.getConnection();
+        PreparedStatement pstm = null;
+        ResultSet resultQUERY = null;
+        
+        try{ 
+            pstm = c.prepareStatement("SELECT "+nome_coluna+" FROM produtos WHERE id="+id);
+            resultQUERY=pstm.executeQuery();
+            while(resultQUERY.next()){
+                result=resultQUERY.getString(1);
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }finally{Database.closeConnection(c);}
+
+        return result;
+
+    }
+
 }

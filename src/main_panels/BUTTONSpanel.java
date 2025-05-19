@@ -52,6 +52,8 @@ public class BUTTONSpanel {
 
     public BUTTONSpanel(int WIDTH, int HEIGHT){
 
+        int button_height = (35*HEIGHT/40)/6;
+
         panel = new JPanel();
         panel.setBounds(0, HEIGHT/40, WIDTH/5, 35*HEIGHT/40);
         panel.setLayout(null);
@@ -59,7 +61,7 @@ public class BUTTONSpanel {
         panel.setBackground(new Color(32,32,32));
 
         ADICIONARbutton = new JButton();
-        ScreenFunctions.button_setup(ADICIONARbutton, "Adicionar item", 0, 0, WIDTH/5, (35*HEIGHT/40)/8, Screen.myActionListener, panel);
+        ScreenFunctions.button_setup(ADICIONARbutton, "Adicionar item", 0, 0, WIDTH/5, button_height, Screen.myActionListener, panel);
         ScreenFunctions.button_edit(ADICIONARbutton, new Font("Arial",Font.PLAIN,16), new Color(32,32,32), Color.WHITE);
         ADICIONARbutton.setFocusable(false);
         ADICIONARbutton.setBorder(null);
@@ -71,7 +73,7 @@ public class BUTTONSpanel {
         panel.add(ADICIONARbutton);
 
         EDITARbutton = new JButton();
-        ScreenFunctions.button_setup(EDITARbutton, "Editar item", 0, 1*(35*HEIGHT/40)/8, WIDTH/5, (35*HEIGHT/40)/8, Screen.myActionListener, panel);
+        ScreenFunctions.button_setup(EDITARbutton, "Editar item", 0, 1*button_height, WIDTH/5, button_height, Screen.myActionListener, panel);
         ScreenFunctions.button_edit(EDITARbutton, new Font("Arial",Font.PLAIN,16), new Color(32,32,32), Color.WHITE);
         EDITARbutton.setFocusable(false);
         EDITARbutton.setBorder(null);
@@ -83,7 +85,7 @@ public class BUTTONSpanel {
         panel.add(EDITARbutton);
 
         REMOVERbutton = new JButton();
-        ScreenFunctions.button_setup(REMOVERbutton, "Remover item", 0, 2*(35*HEIGHT/40)/8, WIDTH/5, (35*HEIGHT/40)/8, Screen.myActionListener, panel);
+        ScreenFunctions.button_setup(REMOVERbutton, "Remover item", 0, 2*button_height, WIDTH/5, button_height, Screen.myActionListener, panel);
         ScreenFunctions.button_edit(REMOVERbutton, new Font("Arial",Font.PLAIN,16), new Color(32,32,32), Color.WHITE);
         REMOVERbutton.setFocusable(false);
         REMOVERbutton.setBorder(null);
@@ -95,7 +97,7 @@ public class BUTTONSpanel {
         panel.add(REMOVERbutton);
 
         TABELAbutton = new JButton();
-        ScreenFunctions.button_setup(TABELAbutton, "Ver tabela de items", 0, 3*(35*HEIGHT/40)/8, WIDTH/5, (35*HEIGHT/40)/8, Screen.myActionListener, panel);
+        ScreenFunctions.button_setup(TABELAbutton, "Ver tabela de items", 0, 3*button_height, WIDTH/5, button_height, Screen.myActionListener, panel);
         ScreenFunctions.button_edit(TABELAbutton, new Font("Arial",Font.PLAIN,16), new Color(32,32,32), Color.WHITE);
         TABELAbutton.setFocusable(false);
         TABELAbutton.setBorder(null);
@@ -107,7 +109,7 @@ public class BUTTONSpanel {
         panel.add(TABELAbutton);
 
         BUSCARbutton = new JButton();
-        ScreenFunctions.button_setup(BUSCARbutton, "Buscar item", 0, 4*(35*HEIGHT/40)/8, WIDTH/5, (35*HEIGHT/40)/8, Screen.myActionListener, panel);
+        ScreenFunctions.button_setup(BUSCARbutton, "Buscar item", 0, 4*button_height, WIDTH/5, button_height, Screen.myActionListener, panel);
         ScreenFunctions.button_edit(BUSCARbutton, new Font("Arial",Font.PLAIN,16), new Color(32,32,32), Color.WHITE);
         BUSCARbutton.setFocusable(false);
         BUSCARbutton.setBorder(null);
@@ -119,7 +121,7 @@ public class BUTTONSpanel {
         panel.add(BUSCARbutton);
 
         ORDENARbutton = new JButton();
-        ScreenFunctions.button_setup(ORDENARbutton, "Ordenar por", 0, 5*(35*HEIGHT/40)/8, WIDTH/5, (35*HEIGHT/40)/8, Screen.myActionListener, panel);
+        ScreenFunctions.button_setup(ORDENARbutton, "Ordenar por", 0, 5*button_height, WIDTH/5, button_height, Screen.myActionListener, panel);
         ScreenFunctions.button_edit(ORDENARbutton, new Font("Arial",Font.PLAIN,16), new Color(32,32,32), Color.WHITE);
         ORDENARbutton.setFocusable(false);
         ORDENARbutton.setBorder(null);
@@ -129,18 +131,6 @@ public class BUTTONSpanel {
         ORDENARbutton.setContentAreaFilled(false);
         ORDENARbutton.setOpaque(true);
         panel.add(ORDENARbutton);
-
-        EXPORTARbutton = new JButton();
-        ScreenFunctions.button_setup(EXPORTARbutton, "Exportar dados", 0, 6*(35*HEIGHT/40)/8, WIDTH/5, (35*HEIGHT/40)/8, Screen.myActionListener, panel);
-        ScreenFunctions.button_edit(EXPORTARbutton, new Font("Arial",Font.PLAIN,16), new Color(32,32,32), Color.WHITE);
-        EXPORTARbutton.setFocusable(false);
-        EXPORTARbutton.setBorder(null);
-        EXPORTARbutton.addMouseListener(Screen.myMouseListener);
-        //remover preenchimento automático de fundo quando clicar
-        EXPORTARbutton.setFocusPainted(false);
-        EXPORTARbutton.setContentAreaFilled(false);
-        EXPORTARbutton.setOpaque(true);
-        panel.add(EXPORTARbutton);
         
     }
 

@@ -93,7 +93,7 @@ public class TablePanel{
 
     }
 
-        public void update_table(){
+    public void update_table(){
 
         table.removeAll();
         panelTABLE.removeAll();
