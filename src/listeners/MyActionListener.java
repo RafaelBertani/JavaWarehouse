@@ -368,14 +368,15 @@ public class MyActionListener implements ActionListener{
             else if(sortPanel.getColuna().getSelectedIndex()==0){
                 JOptionPane.showMessageDialog(null,"Selecione o atributo que você quer ordenar.","Erro!",JOptionPane.ERROR_MESSAGE);
             }
-            
-            String[] objeto = new String[]{"id","nome","preco","marca","validade","quantidade","setor"};
-            sortPanel.setitemList(Queries.ordenar_por_coluna(objeto[sortPanel.getColuna().getSelectedIndex()-1], sortPanel.getOrdem().getSelectedIndex()==1));
-            sortPanel.getPanel().setVisible(false);
-            sortPanel.update_table();
-            sortPanel.getPanel().setVisible(true);
+            else{
+                String[] objeto = new String[]{"id","nome","preco","marca","validade","quantidade","setor"};
+                sortPanel.setitemList(Queries.ordenar_por_coluna(objeto[sortPanel.getColuna().getSelectedIndex()-1], sortPanel.getOrdem().getSelectedIndex()==1));
+                sortPanel.getPanel().setVisible(false);
+                sortPanel.update_table();
+                sortPanel.getPanel().setVisible(true);
+                JOptionPane.showMessageDialog(null,"Ordenação realizada!","Sucesso!",JOptionPane.INFORMATION_MESSAGE);
+            }
 
-            JOptionPane.showMessageDialog(null,"Ordenação realizada!","Sucesso!",JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
