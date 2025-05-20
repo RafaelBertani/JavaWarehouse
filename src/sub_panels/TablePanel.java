@@ -13,6 +13,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import listeners.MyActionListener;
 import screen.ScreenFunctions;
 
 public class TablePanel{
@@ -100,7 +101,7 @@ public class TablePanel{
         data.clear();
 
         for(Item i : item_list){
-            Object item[] = {i.getId(),i.getNome(),i.getPreco(),i.getMarca(),i.getValidade(),i.getQuantidade(),i.getSetor()};
+            Object item[] = {i.getId(),i.getNome(),i.getPreco(),i.getMarca(),MyActionListener.converterDataParaBR(i.getValidade().toString()),i.getQuantidade(),i.getSetor()};
             data.add(item);
         }
 

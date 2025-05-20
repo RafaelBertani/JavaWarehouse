@@ -1,6 +1,8 @@
 package log;
 //import java.awt.List;
-import java.util.ArrayList;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Log {
     
@@ -9,19 +11,12 @@ public class Log {
     private String comando;
     private String timestamp;
     
-    public Log(int ID, String tipo, String comando, String timestamp){
-        this.ID=ID;
+    public Log(String tipo, String comando, String timestamp){
         this.tipo=tipo;
         this.comando=comando;
         this.timestamp=timestamp;
     }
 
-    public void setID(int iD) {
-        ID = iD;
-    }
-    public int getID() {
-        return ID;
-    }
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
@@ -41,62 +36,12 @@ public class Log {
         return timestamp;
     }
 
-    public static ArrayList<Log> retorna(){
+    public static String current_timestamp(){
+        LocalDateTime agora = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss");
 
-        ArrayList<Log> lista = new ArrayList<>();
-
-        lista.add(new Log(0,"oi","123","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"oi","123","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"oi","123","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"oi","123","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"oi","123","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"oi","123","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"oi","123","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"oi","123","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"oi","123","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"oi","123","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"oi","123","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"oi","123","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"oi","123","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"oi","123","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"oi","123","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"oi","123","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"oi","123","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"oi","123","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"oi","123","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"oi","123","22/1/2025 - 17:12:08"));
-
-        return lista;
-
-    }
-
-    public static ArrayList<Log> retorna_atualizados(){
-
-        ArrayList<Log> lista = new ArrayList<>();
-
-        lista.add(new Log(0,"olá","456","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"olá","456","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"olá","456","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"olá","456","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"olá","456","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"olá","456","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"olá","456","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"olá","456","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"olá","456","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"olá","456","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"olá","456","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"olá","456","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"olá","456","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"olá","456","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"olá","456","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"olá","456","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"olá","456","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"olá","456","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"olá","456","22/1/2025 - 17:12:08"));
-        lista.add(new Log(0,"olá","456","22/1/2025 - 17:12:08"));
-
-        return lista;
-
+        String dataHoraFormatada = agora.format(formatter);
+        return dataHoraFormatada;
     }
 
 }

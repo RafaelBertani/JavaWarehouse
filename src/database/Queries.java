@@ -5,6 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import log.Log;
+import screen.Screen;
 
 public class Queries {
     
@@ -29,6 +32,11 @@ public class Queries {
             resultQUERY = pstm.executeQuery();
             resultQUERY.next();
 
+            Screen.getMy_LOGSpanel().getItem_list().add(new Log("INSERT", "insert into produtos (nome, preco, marca, validade quantidade, setor) values ("+i.getNome()+", "+i.getPreco()+", "+i.getMarca()+", "+i.getValidade()+", "+i.getQuantidade()+", "+i.getSetor()+")", Log.current_timestamp()));
+            Screen.getMy_LOGSpanel().getPanel().setVisible(false);
+            Screen.getMy_LOGSpanel().update_table();
+            Screen.getMy_LOGSpanel().getPanel().setVisible(true);
+
         }catch(SQLException e){
             e.printStackTrace();
             successful = false;
@@ -47,6 +55,11 @@ public class Queries {
         try {
             pstm = c.prepareStatement("update produtos set "+coluna+"='"+novaINFO+"' where id="+id);
             pstm.execute();
+
+            Screen.getMy_LOGSpanel().getItem_list().add(new Log("UPDATE", "update produtos set "+coluna+"='"+novaINFO+"' where id="+id, Log.current_timestamp()));
+            Screen.getMy_LOGSpanel().getPanel().setVisible(false);
+            Screen.getMy_LOGSpanel().update_table();
+            Screen.getMy_LOGSpanel().getPanel().setVisible(true);
             
         }catch(SQLException e){
             e.printStackTrace();
@@ -66,6 +79,11 @@ public class Queries {
         try{ 
             pstm = c.prepareStatement("delete from produtos where id="+id);
             pstm.execute();
+
+            Screen.getMy_LOGSpanel().getItem_list().add(new Log("DELETE", "delete from produtos where id="+id, Log.current_timestamp()));
+            Screen.getMy_LOGSpanel().getPanel().setVisible(false);
+            Screen.getMy_LOGSpanel().update_table();
+            Screen.getMy_LOGSpanel().getPanel().setVisible(true);
 
         }catch(SQLException e){
             e.printStackTrace();
@@ -162,6 +180,37 @@ public class Queries {
 
         return result;
 
+    }
+
+    public static ArrayList<Item> ordenar_por_coluna(String coluna, boolean ordem_crescente){
+        
+        ArrayList<Item> resultados = new ArrayList<>();
+        Connection c = Database.getConnection();
+        PreparedStatement pstm = null;
+        ResultSet resultQUERY = null;
+        Item novo;
+        try{ 
+            if(ordem_crescente){pstm = c.prepareStatement("SELECT * FROM produtos ORDER BY "+ coluna +" ASC");}
+            else{pstm = c.prepareStatement("SELECT * FROM produtos ORDER BY "+ coluna +" DESC");}
+            resultQUERY=pstm.executeQuery();
+            while(resultQUERY.next()){
+                //indexes começam no 1, ou seja, 1=id
+                novo = new Item(
+                    resultQUERY.getString(2), //nome
+                    resultQUERY.getDouble(3), //preço
+                    resultQUERY.getString(4), //marca
+                    resultQUERY.getDate(5), //validade
+                    resultQUERY.getInt(6), //quant
+                    resultQUERY.getInt(7) //setor
+                );
+                novo.setId(resultQUERY.getInt(1)); //id
+                resultados.add(novo);
+            }
+
+        } catch(SQLException e){JOptionPane.showMessageDialog(null, "ERRO! Falha na conexão com o Banco de Dados", "Erro de conexão", JOptionPane.ERROR_MESSAGE);
+        }finally{Database.closeConnection(c);}
+        
+        return resultados;
     }
 
 }

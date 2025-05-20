@@ -11,10 +11,6 @@ public class MyMouseListener implements MouseListener{
     @Override
     public void mouseClicked(MouseEvent e) {
 
-        if(e.getSource()==Screen.getMy_LOGSpanel().getTable()){
-            System.out.println(Screen.getMy_LOGSpanel().getTable().getSelectedRow());
-        }
-
     }
 
     @Override

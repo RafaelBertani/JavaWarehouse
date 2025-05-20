@@ -16,7 +16,7 @@ public class Screen extends JFrame{
     private static BUTTONSpanel my_BUTTONSpanel;
     private static LOGSpanel my_LOGSpanel;
     private static CENTERpanel my_CENTERpanel;
-    
+
     public static BUTTONSpanel getMy_BUTTONSpanel() {
         return my_BUTTONSpanel;
     }
@@ -28,7 +28,6 @@ public class Screen extends JFrame{
     public static CENTERpanel getMy_CENTERpanel() {
         return my_CENTERpanel;
     }
-
     
     public static MyActionListener myActionListener = new MyActionListener();
     // private MyKeyListener myKeyListener = new MyKeyListener();
