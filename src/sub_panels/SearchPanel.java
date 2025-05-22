@@ -39,17 +39,17 @@ public class SearchPanel{
     private int[] columns_width = {50,100,100,100,100,100,100};
     
     private JLabel explanation = new JLabel();
-    private JComboBox<String> variavel = new JComboBox<>(new String[]{"--Atributo--","ID","Nome","Preço","Marca","Validade","Quantidade","Setor"});
-    private JComboBox<String> operador = new JComboBox<>(new String[]{"--Operador--","=",">",">=","<","<="});
+    private JComboBox<String> column = new JComboBox<>(new String[]{"--Coluna--","ID","Nome","Preço","Marca","Validade","Quantidade","Setor"});
+    private JComboBox<String> operator = new JComboBox<>(new String[]{"--Operador--","=",">",">=","<","<="});
     private JTextField valor = new JTextField();
     public JButton src_btn = new JButton();
 
-    public JComboBox<String> getVariavel() {
-        return variavel;
+    public JComboBox<String> getColumn() {
+        return column;
     }
 
-    public JComboBox<String> getOperador() {
-        return operador;
+    public JComboBox<String> getOperator() {
+        return operator;
     }
 
     public JTextField getValor() {
@@ -84,12 +84,12 @@ public class SearchPanel{
         //explicação
         ScreenFunctions.label_setup(explanation, "Escolha a busca que deseja fazer na base de dados:", false, 0, HEIGHT/4, WIDTH, HEIGHT/10, panel);
         ScreenFunctions.label_edit(explanation, new Font("Arial",Font.PLAIN,14), null, Color.WHITE);
-        //variável
-        ScreenFunctions.combobox_setup(variavel, WIDTH/4, HEIGHT/3, WIDTH/8, HEIGHT/20, 8, 0, panel);
-        ScreenFunctions.combobox_edit(variavel, new Font("Arial",Font.PLAIN,14), new Color(64,64,64), Color.WHITE);
+        //coluna
+        ScreenFunctions.combobox_setup(column, WIDTH/4, HEIGHT/3, WIDTH/8, HEIGHT/20, 8, 0, panel);
+        ScreenFunctions.combobox_edit(column, new Font("Arial",Font.PLAIN,14), new Color(64,64,64), Color.WHITE);
         //operador
-        ScreenFunctions.combobox_setup(operador, WIDTH/2-WIDTH/16, HEIGHT/3, WIDTH/8, HEIGHT/20, 6, 0, panel);
-        ScreenFunctions.combobox_edit(operador, new Font("Arial",Font.PLAIN,14), new Color(64,64,64), Color.WHITE);
+        ScreenFunctions.combobox_setup(operator, WIDTH/2-WIDTH/16, HEIGHT/3, WIDTH/8, HEIGHT/20, 6, 0, panel);
+        ScreenFunctions.combobox_edit(operator, new Font("Arial",Font.PLAIN,14), new Color(64,64,64), Color.WHITE);
         //valor
         ScreenFunctions.textfield_setup(valor, "", 3*WIDTH/4-WIDTH/8, HEIGHT/3, WIDTH/8, HEIGHT/20, true, false, panel);
         ScreenFunctions.textfield_edit(valor, new Font("Arial",Font.PLAIN,14), new Color(64,64,64), Color.WHITE);
@@ -114,7 +114,7 @@ public class SearchPanel{
         data.clear();
 
         for(Item i : item_list){
-            Object item[] = {i.getId(),i.getNome(),i.getPreco(),i.getMarca(),MyActionListener.converterDataParaBR(i.getValidade().toString()),i.getQuantidade(),i.getSetor()};
+            Object item[] = {i.getId(),i.getNome(),i.getPreco(),i.getMarca(),MyActionListener.convertDateToBR(i.getValidade().toString()),i.getQuantidade(),i.getSetor()};
             data.add(item);
         }
 

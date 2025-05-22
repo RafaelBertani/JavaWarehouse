@@ -103,7 +103,7 @@ public class SortPanel{
         data.clear();
 
         for(Item i : item_list){
-            Object item[] = {i.getId(),i.getNome(),i.getPreco(),i.getMarca(),MyActionListener.converterDataParaBR(i.getValidade().toString()),i.getQuantidade(),i.getSetor()};
+            Object item[] = {i.getId(),i.getNome(),i.getPreco(),i.getMarca(),MyActionListener.convertDateToBR(i.getValidade().toString()),i.getQuantidade(),i.getSetor()};
             data.add(item);
         }
 

@@ -104,12 +104,6 @@ public class AddPanel{
         add_btn.setFocusable(false);
         add_btn.setBorder(new LineBorder(new Color(0,0,0), 2));
         
-        // Queries.adicionar_item(new Item("nome",123.45,"marca A", new Date(System.currentTimeMillis()),123,456));
-        // Queries.editar_item(5, "validade", "2012-02-12");
-        // Queries.remove_item(3);
-        // System.out.println(Queries.retorna_tabela().get(3).getIndex());
-        // System.out.println(Queries.retorna_busca("validade", "=", "2012-02-12").get(0).getValidade());
-
     }
 
 }

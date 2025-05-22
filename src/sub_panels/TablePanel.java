@@ -60,36 +60,7 @@ public class TablePanel{
         ScreenFunctions.label_edit(subtitle,new Font("Arial",Font.PLAIN,20),null,Color.WHITE);
 
         ScreenFunctions.panel_edit(panelTABLE, true, null);
-        // for(Item i : item_list){
-        //     Object item[] = {i.getId(),i.getNome(),i.getPreco(),i.getMarca(),i.getValidade(),i.getQuantidade(),i.getSetor()};
-        //     data.add(item);
-        // }
-        
-        // DefaultTableModel modelTABLE = new DefaultTableModel(null, columns_name);
-        // for(int i=0;i<data.size();i++){
-        //     modelTABLE.addRow(data.get(i));
-        // }
-        // table = new JTable(modelTABLE);
 
-        // table.setPreferredScrollableViewportSize(new Dimension(64*WIDTH/100, HEIGHT/7));
-        // table.setFillsViewportHeight(true);
-        // table.setDefaultEditor(Object.class, null);
-        // DefaultTableCellRenderer centralizer = new DefaultTableCellRenderer();
-        // centralizer.setHorizontalAlignment(SwingConstants.CENTER);
-        // for(int i=0;i<columns_width.length;i++){
-        //     table.getColumnModel().getColumn(i).setPreferredWidth(columns_width[i]);
-        //     table.getColumnModel().getColumn(i).setCellRenderer(centralizer);
-        // }
-
-        // panelTABLE.add(table);
-        // panelTABLE.add(new JScrollPane(table));
-        // panelTABLE.setBounds(WIDTH/10, HEIGHT/20, (int) ((64*WIDTH/100)*1.03), (int) ((HEIGHT/7)*1.20));
-        // panel.add(panelTABLE);
-        
-        // table.getTableHeader().setBackground(new Color(48,48,48));
-        // table.getTableHeader().setForeground(Color.WHITE);
-        // table.setBackground(new Color(64,64,64));
-        // table.setForeground(Color.WHITE);
         update_table();
 
     }
@@ -101,7 +72,7 @@ public class TablePanel{
         data.clear();
 
         for(Item i : item_list){
-            Object item[] = {i.getId(),i.getNome(),i.getPreco(),i.getMarca(),MyActionListener.converterDataParaBR(i.getValidade().toString()),i.getQuantidade(),i.getSetor()};
+            Object item[] = {i.getId(),i.getNome(),i.getPreco(),i.getMarca(),MyActionListener.convertDateToBR(i.getValidade().toString()),i.getQuantidade(),i.getSetor()};
             data.add(item);
         }
 

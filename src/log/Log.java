@@ -6,28 +6,27 @@ import java.time.format.DateTimeFormatter;
 
 public class Log {
     
-    private int ID;
-    private String tipo;
-    private String comando;
+    private String type;
+    private String statement;
     private String timestamp;
     
-    public Log(String tipo, String comando, String timestamp){
-        this.tipo=tipo;
-        this.comando=comando;
+    public Log(String type, String statement, String timestamp){
+        this.type=type;
+        this.statement=statement;
         this.timestamp=timestamp;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setType(String type) {
+        this.type = type;
     }
-    public String getTipo() {
-        return tipo;
+    public String getType() {
+        return type;
     }
-    public void setComando(String comando) {
-        this.comando = comando;
+    public void setStatement(String statement) {
+        this.statement = statement;
     }
-    public String getComando() {
-        return comando;
+    public String getStatement() {
+        return statement;
     }
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;

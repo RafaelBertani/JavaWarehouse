@@ -75,7 +75,7 @@ public class LOGSpanel {
         int[] columns_width = {WIDTH/20,9*WIDTH/20,WIDTH/20};
 
         for(Log a : item_list){
-            Object item[] = {a.getTipo(),a.getComando(),a.getTimestamp()};
+            Object item[] = {a.getType(),a.getStatement(),a.getTimestamp()};
             data.add(item);
         }
 

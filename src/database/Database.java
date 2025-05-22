@@ -27,21 +27,9 @@ public class Database {
     public static String url = "jdbc:mysql://localhost:3306/";
     public static String databaseName = "my_db";
     public static String userName = "root";
-    public static String password = "db#1post"; //"mysqlimt";
+    public static String password = ""; //"mysqlimt"; SENHA NOS COMPUTADORES IMT
 
-    //ONLINE 2 (FREEMYSQLDATABASE.NET) -> BACKUP CASO O ONLINE 1 ESTEJA OFFLINE
-    // public static String url = "jdbc:mysql://sql10.freesqldatabase.com:3306/";
-    // public static String databaseName = "sql10620559";
-    // public static String userName = "sql10620559";
-    // public static String password = "1LYhuM3lux";
-
-    //ONLINE 1 (CLOUDCLUSTERS.IO)
-    // public static String url = "jdbc:mysql://mysql-129849-0.cloudclusters.net:19846/";
-    // public static String databaseName = "projeto";
-    // public static String userName = "admin";
-    // public static String password = "IeiS3WfK";
-    
-    public static void criaDATABASE() throws Exception{
+    public static void createDATABASE() throws Exception{
         
         try {
 
@@ -68,7 +56,7 @@ public class Database {
         }
     }
     
-    public static void criaTabela() {
+    public static void createTABLE() {
         try {
             Connection connection = getConnection();
 
@@ -78,7 +66,6 @@ public class Database {
             tablesResult = meta.getTables(null, null, "%", new String[] {"TABLE"});
 
             while(tablesResult.next()) {
-                //System.out.println(tablesResult.getString("TABLE_NAME"));
                 if(tablesResult.getString("TABLE_NAME").equals("produtos")) {
                     tabelaPresente = true;
                 }

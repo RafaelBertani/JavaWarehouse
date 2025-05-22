@@ -11,7 +11,7 @@ import screen.Screen;
 
 public class Queries {
     
-    public static boolean adicionar_item(Item i){
+    public static boolean addItem(Item i){
 
         boolean successful = true;
 
@@ -46,17 +46,17 @@ public class Queries {
 
     }
 
-    public static boolean editar_item(int id, String coluna, String novaINFO){
+    public static boolean editItem(int id, String column, String newINFO){
 
         boolean successful = true;
 
         Connection c = Database.getConnection();
         PreparedStatement pstm = null;
         try {
-            pstm = c.prepareStatement("update produtos set "+coluna+"='"+novaINFO+"' where id="+id);
+            pstm = c.prepareStatement("update produtos set "+column+"='"+newINFO+"' where id="+id);
             pstm.execute();
 
-            Screen.getMy_LOGSpanel().getItem_list().add(new Log("UPDATE", "update produtos set "+coluna+"='"+novaINFO+"' where id="+id, Log.current_timestamp()));
+            Screen.getMy_LOGSpanel().getItem_list().add(new Log("UPDATE", "update produtos set "+column+"='"+newINFO+"' where id="+id, Log.current_timestamp()));
             Screen.getMy_LOGSpanel().getPanel().setVisible(false);
             Screen.getMy_LOGSpanel().update_table();
             Screen.getMy_LOGSpanel().getPanel().setVisible(true);
@@ -70,7 +70,7 @@ public class Queries {
 
     }
 
-    public static boolean remove_item(int id){
+    public static boolean removeItem(int id){
 
         boolean successful = true;
 
@@ -94,7 +94,7 @@ public class Queries {
         
     }
 
-    public static ArrayList<Item> retorna_busca(String coluna, String operador, String valor){
+    public static ArrayList<Item> retorna_busca(String column, String operator, String value){
         
         ArrayList<Item> resultados = new ArrayList<>();
         Connection c = Database.getConnection();
@@ -102,9 +102,9 @@ public class Queries {
         ResultSet resultQUERY = null;
         try{
             
-            if(coluna.equals("validade")){valor="\'"+valor+"\'";}
+            if(column.equals("validade")){value="\'"+value+"\'";}
 
-            pstm = c.prepareStatement("select * from produtos where "+coluna+operador+valor);
+            pstm = c.prepareStatement("select * from produtos where "+column+operator+value);
             resultQUERY=pstm.executeQuery();
             while(resultQUERY.next()){
                 //indexes começam no 1, ou seja, 1=id
@@ -128,7 +128,7 @@ public class Queries {
         
     }
 
-    public static ArrayList<Item> retorna_tabela(){
+    public static ArrayList<Item> returnTable(){
         
         ArrayList<Item> resultados = new ArrayList<>();
         Connection c = Database.getConnection();
@@ -160,7 +160,7 @@ public class Queries {
         return resultados;
     }
 
-    public static String retorna_valor_especifico(int id, String nome_coluna){
+    public static String returnSpecificValue(int id, String column){
         
         String result = "";
 
@@ -169,7 +169,7 @@ public class Queries {
         ResultSet resultQUERY = null;
         
         try{ 
-            pstm = c.prepareStatement("SELECT "+nome_coluna+" FROM produtos WHERE id="+id);
+            pstm = c.prepareStatement("SELECT "+column+" FROM produtos WHERE id="+id);
             resultQUERY=pstm.executeQuery();
             while(resultQUERY.next()){
                 result=resultQUERY.getString(1);
@@ -182,7 +182,7 @@ public class Queries {
 
     }
 
-    public static ArrayList<Item> ordenar_por_coluna(String coluna, boolean ordem_crescente){
+    public static ArrayList<Item> sortByColumn(String column, boolean ASC){
         
         ArrayList<Item> resultados = new ArrayList<>();
         Connection c = Database.getConnection();
@@ -190,8 +190,8 @@ public class Queries {
         ResultSet resultQUERY = null;
         Item novo;
         try{ 
-            if(ordem_crescente){pstm = c.prepareStatement("SELECT * FROM produtos ORDER BY "+ coluna +" ASC");}
-            else{pstm = c.prepareStatement("SELECT * FROM produtos ORDER BY "+ coluna +" DESC");}
+            if(ASC){pstm = c.prepareStatement("SELECT * FROM produtos ORDER BY "+ column +" ASC");}
+            else{pstm = c.prepareStatement("SELECT * FROM produtos ORDER BY "+ column +" DESC");}
             resultQUERY=pstm.executeQuery();
             while(resultQUERY.next()){
                 //indexes começam no 1, ou seja, 1=id
