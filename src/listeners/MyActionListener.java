@@ -1,4 +1,5 @@
 package listeners;
+
 import database.Item;
 import database.Queries;
 import java.awt.event.ActionEvent;
@@ -40,44 +41,31 @@ public class MyActionListener implements ActionListener{
             
             AddPanel addPanel = Screen.getMy_CENTERpanel().getMyAddPanel();
             
-            // Check if the item's name field is empty
-            if(addPanel.getName().getText().equals("")){
-                JOptionPane.showMessageDialog(null,"O nome do item não pode ficar vazio.","Erro!",JOptionPane.ERROR_MESSAGE);
-            }
-            // Check if the item's price field is empty
-            else if(addPanel.getPreco().getText().equals("")){
-                JOptionPane.showMessageDialog(null,"O preço do item não pode ficar vazio.","Erro!",JOptionPane.ERROR_MESSAGE);
-            }
-            // Check if the item's brand field is empty
-            else if(addPanel.getMarca().getText().equals("")){
-                JOptionPane.showMessageDialog(null,"A marca do item não pode ficar vazia.","Erro!",JOptionPane.ERROR_MESSAGE);
-            }
-            // Check if the item's expiration date field is empty
-            else if(addPanel.getValidade().getText().equals("")){
-                JOptionPane.showMessageDialog(null,"A validade do item não pode ficar vazia.","Erro!",JOptionPane.ERROR_MESSAGE);
-            }
-            // Check if the item's quantity field is empty
-            else if(addPanel.getQuantidade().getText().equals("")){
-                JOptionPane.showMessageDialog(null,"A quantidade do item não pode ficar vazia.","Erro!",JOptionPane.ERROR_MESSAGE);
-            }
-            // Check if the item's sector field is empty
-            else if(addPanel.getSetor().getText().equals("")){
-                JOptionPane.showMessageDialog(null,"O setor do item não pode ficar vazio.","Erro!",JOptionPane.ERROR_MESSAGE);
+            // Check if any field is empty
+            if(
+                addPanel.getName().getText().equals("") ||
+                addPanel.getPrice().getText().equals("") ||
+                addPanel.getBrand().getText().equals("") ||
+                addPanel.getExpiration().getText().equals("") ||
+                addPanel.getAmount().getText().equals("") ||
+                addPanel.getSection().getText().equals("")
+            ){
+                JOptionPane.showMessageDialog(null,"Nenhum campo do novo item pode ficar vazio.","Erro!",JOptionPane.ERROR_MESSAGE);
             }
             // Check if the price is a valid double value (replace comma with dot)
-            else if(!doubleValid(addPanel.getPreco().getText().replace(',','.'))){
+            else if(!doubleValid(addPanel.getPrice().getText().replace(',','.'))){
                 JOptionPane.showMessageDialog(null,"O preço deve conter apenas números\nExemplo: 123 ou 456.78","Erro!",JOptionPane.ERROR_MESSAGE);
             }
             // Check if the quantity is a valid integer
-            else if(!integerValid(addPanel.getQuantidade().getText())){
+            else if(!integerValid(addPanel.getAmount().getText())){
                 JOptionPane.showMessageDialog(null,"A quantidade deve conter apenas números inteiros\nExemplo: 123","Erro!",JOptionPane.ERROR_MESSAGE);
             }
             // Check if the sector is a valid integer
-            else if(!integerValid(addPanel.getSetor().getText())){
+            else if(!integerValid(addPanel.getSection().getText())){
                 JOptionPane.showMessageDialog(null,"O setor deve conter apenas números inteiros\nExemplo: 123","Erro!",JOptionPane.ERROR_MESSAGE);
             }
             // Check if the expiration date has a valid format (dd/mm/yyyy)
-            else if(!isValidDateFormat(addPanel.getValidade().getText())){
+            else if(!isValidDateFormat(addPanel.getExpiration().getText())){
                 JOptionPane.showMessageDialog(null,"A data de validade deve estar no formato dd/mm/aaaa\nExemplo: 30/08/2014","Erro!",JOptionPane.ERROR_MESSAGE);
             }
             else{
@@ -89,21 +77,24 @@ public class MyActionListener implements ActionListener{
                     successful = Queries.addItem(
                         new Item(
                             addPanel.getName().getText(),
-                            Double.parseDouble(addPanel.getPreco().getText().replace(',','.')),
-                            addPanel.getMarca().getText(),
+                            Double.parseDouble(addPanel.getPrice().getText().replace(',','.')),
+                            addPanel.getBrand().getText(),
                             new Date(
                                 dayToTimestamp(
-                                    Integer.parseInt(addPanel.getValidade().getText().split("/")[0]),
-                                    Integer.parseInt(addPanel.getValidade().getText().split("/")[1]),
-                                    Integer.parseInt(addPanel.getValidade().getText().split("/")[2])
+                                    Integer.parseInt(addPanel.getExpiration().getText().split("/")[0]),
+                                    Integer.parseInt(addPanel.getExpiration().getText().split("/")[1]),
+                                    Integer.parseInt(addPanel.getExpiration().getText().split("/")[2])
                                 )
                             ),
-                            Integer.parseInt(addPanel.getQuantidade().getText()),
-                            Integer.parseInt(addPanel.getSetor().getText())
+                            Integer.parseInt(addPanel.getAmount().getText()),
+                            Integer.parseInt(addPanel.getSection().getText())
                         )
                     );
 
-                    if(successful){JOptionPane.showMessageDialog(null,"O item foi adicionado no banco de dados.","Sucesso!",JOptionPane.INFORMATION_MESSAGE);}
+                    if(successful){
+                        JOptionPane.showMessageDialog(null,"O item foi adicionado no banco de dados.","Sucesso!",JOptionPane.INFORMATION_MESSAGE);
+                        addPanel.resetFields();
+                    }
                     else{JOptionPane.showMessageDialog(null,"Não foi possível inserir o item na base de dados","Erro!",JOptionPane.ERROR_MESSAGE);                            }
                     
                 } catch (NumberFormatException error) {
@@ -121,135 +112,59 @@ public class MyActionListener implements ActionListener{
             Screen.getMy_CENTERpanel().getPanel().setVisible(true);
 
         }
-        else if(e.getSource() == Screen.getMy_CENTERpanel().getMyEditPanel().rb_nome){
-            
-            EditPanel editPanel = Screen.getMy_CENTERpanel().getMyEditPanel();            
-            
-            if(!integerValid(editPanel.getId_text().getText()) && !editPanel.getId_text().getText().equals("")){
-                JOptionPane.showMessageDialog(null,"O ID deve ser um número inteiro.","Erro!",JOptionPane.ERROR_MESSAGE);
-            }
-            else{
-                editPanel.getAtual_text().setText(Queries.returnSpecificValue(Integer.parseInt(editPanel.getId_text().getText()), "nome"));
-            }
-        
-        } 
-        else if(e.getSource() == Screen.getMy_CENTERpanel().getMyEditPanel().rb_preco){
-
-            EditPanel editPanel = Screen.getMy_CENTERpanel().getMyEditPanel();
-            
-            if(!integerValid(editPanel.getId_text().getText()) && !editPanel.getId_text().getText().equals("")){
-                JOptionPane.showMessageDialog(null,"O ID deve ser um número inteiro.","Erro!",JOptionPane.ERROR_MESSAGE);
-            }
-            else{
-                editPanel.getAtual_text().setText(Queries.returnSpecificValue(Integer.parseInt(editPanel.getId_text().getText()), "preco"));
-            }
-
-        } 
-        else if(e.getSource() == Screen.getMy_CENTERpanel().getMyEditPanel().rb_marca){
-            
-            EditPanel editPanel = Screen.getMy_CENTERpanel().getMyEditPanel();
-            
-            if(!integerValid(editPanel.getId_text().getText()) && !editPanel.getId_text().getText().equals("")){
-                JOptionPane.showMessageDialog(null,"O ID deve ser um número inteiro.","Erro!",JOptionPane.ERROR_MESSAGE);
-            }
-            else{
-                editPanel.getAtual_text().setText(Queries.returnSpecificValue(Integer.parseInt(editPanel.getId_text().getText()), "marca"));
-            }
-        
-        }
-        else if(e.getSource() == Screen.getMy_CENTERpanel().getMyEditPanel().rb_validade){
-
-            EditPanel editPanel = Screen.getMy_CENTERpanel().getMyEditPanel();
-
-            if(!integerValid(editPanel.getId_text().getText()) && !editPanel.getId_text().getText().equals("")){
-                JOptionPane.showMessageDialog(null,"O ID deve ser um número inteiro.","Erro!",JOptionPane.ERROR_MESSAGE);
-            }
-            else{
-                editPanel.getAtual_text().setText(convertDateToBR(Queries.returnSpecificValue(Integer.parseInt(editPanel.getId_text().getText()), "validade")));
-            }
-
-        } 
-        else if(e.getSource() == Screen.getMy_CENTERpanel().getMyEditPanel().rb_quantidade){
-            
-            EditPanel editPanel = Screen.getMy_CENTERpanel().getMyEditPanel();
-            
-            if(!integerValid(editPanel.getId_text().getText()) && !editPanel.getId_text().getText().equals("")){
-                JOptionPane.showMessageDialog(null,"O ID deve ser um número inteiro.","Erro!",JOptionPane.ERROR_MESSAGE);
-            }
-            else{
-                editPanel.getAtual_text().setText(Queries.returnSpecificValue(Integer.parseInt(editPanel.getId_text().getText()), "quantidade"));
-            }
-
-        } 
-        else if(e.getSource() == Screen.getMy_CENTERpanel().getMyEditPanel().rb_setor){
-            
-            EditPanel editPanel = Screen.getMy_CENTERpanel().getMyEditPanel();
-
-            if(!integerValid(editPanel.getId_text().getText()) && !editPanel.getId_text().getText().equals("")){
-                JOptionPane.showMessageDialog(null,"O ID deve ser um número inteiro.","Erro!",JOptionPane.ERROR_MESSAGE);
-            }
-            else{
-                editPanel.getAtual_text().setText(Queries.returnSpecificValue(Integer.parseInt(editPanel.getId_text().getText()), "setor"));
-            }
-            
-        }
         else if(e.getSource()==Screen.getMy_CENTERpanel().getMyEditPanel().edit_btn){ //OK EDIT
             EditPanel editPanel = Screen.getMy_CENTERpanel().getMyEditPanel();
+
+            int id = Integer.parseInt(editPanel.getId_text().getText());
+            String new_value = editPanel.getNew_text().getText();
 
             if(!integerValid(editPanel.getId_text().getText())){
                 JOptionPane.showMessageDialog(null,"O ID deve ser um número inteiro.","Erro!",JOptionPane.ERROR_MESSAGE);
             }
-            else if(editPanel.getNovo_text().getText().equals("")){
+            else if(editPanel.getNew_text().getText().equals("")){
                 JOptionPane.showMessageDialog(null,"O novo valor não pode ficar vazio.","Erro!",JOptionPane.ERROR_MESSAGE);
+            }
+            else if( editPanel.rb_preco.isSelected() && !doubleValid(new_value.replace(',','.')) ){
+                JOptionPane.showMessageDialog(null,"O preço deve conter apenas números\nExemplo: 123 ou 456.78","Erro!",JOptionPane.ERROR_MESSAGE);
+            }
+            else if( editPanel.rb_validade.isSelected() && !integerValid(new_value)){
+                JOptionPane.showMessageDialog(null,"A quantidade deve conter apenas números inteiros\nExemplo: 123","Erro!",JOptionPane.ERROR_MESSAGE);                
+            }
+            else if( editPanel.rb_setor.isSelected() && !integerValid(new_value) ) {
+                JOptionPane.showMessageDialog(null,"O setor deve conter apenas números inteiros\nExemplo: 123","Erro!",JOptionPane.ERROR_MESSAGE);
+            }
+            else if(editPanel.rb_validade.isSelected() && !isValidDateFormat(new_value)){
+                JOptionPane.showMessageDialog(null,"A data de validade deve estar no formato dd/mm/aaaa\nExemplo: 30/08/2014","Erro!",JOptionPane.ERROR_MESSAGE);
             }
             else{
                 
-                int id = Integer.parseInt(editPanel.getId_text().getText());
-                String new_value = editPanel.getNovo_text().getText();
-                
+                boolean success = false;
+
                 if(editPanel.rb_nome.isSelected()){
-                    Queries.editItem(id, "nome", editPanel.getNovo_text().getText());
-                    JOptionPane.showMessageDialog(null,"O item foi modificado no banco de dados.","Sucesso!",JOptionPane.INFORMATION_MESSAGE);
+                    success = Queries.editItem(id, "nome", editPanel.getNew_text().getText());
                 }
                 else if(editPanel.rb_preco.isSelected()){
-                    if(!doubleValid(new_value.replace(',','.'))){
-                        JOptionPane.showMessageDialog(null,"O preço deve conter apenas números\nExemplo: 123 ou 456.78","Erro!",JOptionPane.ERROR_MESSAGE);
-                    }
-                    else{
-                        Queries.editItem(id, "preco", editPanel.getNovo_text().getText());
-                        JOptionPane.showMessageDialog(null,"O item foi modificado no banco de dados.","Sucesso!",JOptionPane.INFORMATION_MESSAGE);
-                    }
+                    success = Queries.editItem(id, "preco", editPanel.getNew_text().getText().replace(',','.'));
                 }
                 else if(editPanel.rb_marca.isSelected()){
-                    Queries.editItem(id, "marca", editPanel.getNovo_text().getText());
-                    JOptionPane.showMessageDialog(null,"O item foi modificado no banco de dados.","Sucesso!",JOptionPane.INFORMATION_MESSAGE);
+                    success = Queries.editItem(id, "marca", editPanel.getNew_text().getText());
                 }
                 else if(editPanel.rb_validade.isSelected()){
-                    if(!isValidDateFormat(new_value)){
-                        JOptionPane.showMessageDialog(null,"A data de validade deve estar no formato dd/mm/aaaa\nExemplo: 30/08/2014","Erro!",JOptionPane.ERROR_MESSAGE);
-                    }
-                    else{
-                        Queries.editItem(id, "validade", convertDateToISO(editPanel.getNovo_text().getText()));                    
-                        JOptionPane.showMessageDialog(null,"O item foi modificado no banco de dados.","Sucesso!",JOptionPane.INFORMATION_MESSAGE);
-                    }
+                    success = Queries.editItem(id, "validade", convertDateToISO(editPanel.getNew_text().getText()));                    
                 }
                 else if(editPanel.rb_quantidade.isSelected()){
-                    if(!integerValid(new_value)){
-                        JOptionPane.showMessageDialog(null,"A quantidade deve conter apenas números inteiros\nExemplo: 123","Erro!",JOptionPane.ERROR_MESSAGE);
-                    }
-                    else{
-                        Queries.editItem(id, "quantidade", editPanel.getNovo_text().getText());                    
-                        JOptionPane.showMessageDialog(null,"O item foi modificado no banco de dados.","Sucesso!",JOptionPane.INFORMATION_MESSAGE);   
-                    }
+                    success = Queries.editItem(id, "quantidade", editPanel.getNew_text().getText());                    
                 }
                 else if(editPanel.rb_setor.isSelected()){
-                    if(!integerValid(new_value)){
-                        JOptionPane.showMessageDialog(null,"O setor deve conter apenas números inteiros\nExemplo: 123","Erro!",JOptionPane.ERROR_MESSAGE);
-                    }
-                    else{
-                        Queries.editItem(id, "setor", editPanel.getNovo_text().getText());                    
-                        JOptionPane.showMessageDialog(null,"O item foi modificado no banco de dados.","Sucesso!",JOptionPane.INFORMATION_MESSAGE);
-                    }
+                    success = Queries.editItem(id, "setor", editPanel.getNew_text().getText());                    
+                }
+
+                if(success){
+                    JOptionPane.showMessageDialog(null,"O item foi modificado no banco de dados.","Sucesso!",JOptionPane.INFORMATION_MESSAGE);
+                    editPanel.resetFields();
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"Não foi possível modificar o item no banco de dados.","Erro!",JOptionPane.ERROR_MESSAGE);
                 }
 
             }
@@ -272,7 +187,10 @@ public class MyActionListener implements ActionListener{
             }
             else{
                 Queries.removeItem(Integer.parseInt(removePanel.getId_text().getText()));
-                JOptionPane.showMessageDialog(null,"O item foi removido no banco de dados.","Sucesso!",JOptionPane.INFORMATION_MESSAGE);
+
+                JOptionPane.showMessageDialog(null,"O item foi removido do banco de dados.","Sucesso!",JOptionPane.INFORMATION_MESSAGE);
+                
+                removePanel.resetFields();
             }
 
         }
@@ -284,7 +202,7 @@ public class MyActionListener implements ActionListener{
             Screen.getMy_CENTERpanel().getPanel().setVisible(true);
 
             try{
-                Screen.getMy_CENTERpanel().getMyTablePanel().setitemList(Queries.returnTable());
+                Screen.getMy_CENTERpanel().getMyTablePanel().setItemList(Queries.returnTable());
                 Screen.getMy_CENTERpanel().getMyTablePanel().update_table();
             }catch(Exception tableERROR){tableERROR.printStackTrace();}
 
@@ -302,35 +220,22 @@ public class MyActionListener implements ActionListener{
             SearchPanel searchPanel = Screen.getMy_CENTERpanel().getMySearchPanel();
             String[] object = new String[]{"id","nome","preco","marca","validade","quantidade","setor"};
 
-            if(searchPanel.getColumn().getSelectedItem().equals("Nome") && searchPanel.getValor().getText().equals("")){
-                JOptionPane.showMessageDialog(null,"O nome do item não pode ficar vazio.","Erro!",JOptionPane.ERROR_MESSAGE);
-            }
-            else if(searchPanel.getColumn().getSelectedItem().equals("Preço") && searchPanel.getValor().getText().equals("")){
-                JOptionPane.showMessageDialog(null,"O preço do item não pode ficar vazio.","Erro!",JOptionPane.ERROR_MESSAGE);
-            }
-            else if(searchPanel.getColumn().getSelectedItem().equals("Marca") && searchPanel.getValor().getText().equals("")){
-                JOptionPane.showMessageDialog(null,"A marca do item não pode ficar vazia.","Erro!",JOptionPane.ERROR_MESSAGE);
-            }
-            else if(searchPanel.getColumn().getSelectedItem().equals("Validade") && searchPanel.getValor().getText().equals("")){
-                JOptionPane.showMessageDialog(null,"A validade do item não pode ficar vazia.","Erro!",JOptionPane.ERROR_MESSAGE);
-            }
-            else if(searchPanel.getColumn().getSelectedItem().equals("Quantidade") && searchPanel.getValor().getText().equals("")){
-                JOptionPane.showMessageDialog(null,"A quantidade do item não pode ficar vazia.","Erro!",JOptionPane.ERROR_MESSAGE);
-            }
-            else if(searchPanel.getColumn().getSelectedItem().equals("Setor") && searchPanel.getValor().getText().equals("")){
-                JOptionPane.showMessageDialog(null,"O setor do item não pode ficar vazio.","Erro!",JOptionPane.ERROR_MESSAGE);
+            String value = searchPanel.getValue().getText();
+
+            if(value.equals("")){
+                JOptionPane.showMessageDialog(null,"O campo de busca não pode ficar vazio.","Erro!",JOptionPane.ERROR_MESSAGE);
             }
             else if(
-                searchPanel.getColumn().getSelectedItem().equals("Validade") && !isValidDateFormat(searchPanel.getValor().getText())){
+                searchPanel.getColumn().getSelectedItem().equals("Validade") && !isValidDateFormat(value)){
                 JOptionPane.showMessageDialog(null,"A data de validade deve estar no formato dd/mm/aaaa\nExemplo: 30/08/2014","Erro!",JOptionPane.ERROR_MESSAGE);
             }
-            else if(searchPanel.getColumn().getSelectedItem().equals("Preço") && !doubleValid(searchPanel.getValor().getText())){
+            else if(searchPanel.getColumn().getSelectedItem().equals("Preço") && !doubleValid(value)){
                 JOptionPane.showMessageDialog(null,"O preço deve conter apenas números\nExemplo: 123 ou 456.78","Erro!",JOptionPane.ERROR_MESSAGE);    
             }
-            else if(searchPanel.getColumn().getSelectedItem().equals("Quantidade") && !integerValid(searchPanel.getValor().getText())){
+            else if(searchPanel.getColumn().getSelectedItem().equals("Quantidade") && !integerValid(value)){
                 JOptionPane.showMessageDialog(null,"A quantidade deve conter apenas números inteiros\nExemplo: 123","Erro!",JOptionPane.ERROR_MESSAGE);
             }
-            else if(searchPanel.getColumn().getSelectedItem().equals("Setor") && !integerValid(searchPanel.getValor().getText())){
+            else if(searchPanel.getColumn().getSelectedItem().equals("Setor") && !integerValid(value)){
                 JOptionPane.showMessageDialog(null,"O setor deve conter apenas números inteiros\nExemplo: 123","Erro!",JOptionPane.ERROR_MESSAGE);
             }
             else if(searchPanel.getColumn().getSelectedIndex()==0){
@@ -342,10 +247,10 @@ public class MyActionListener implements ActionListener{
             else{
                 try{
 
-                    searchPanel.setitemList(
-                        Queries.retorna_busca(object[searchPanel.getColumn().getSelectedIndex()-1],
+                    searchPanel.setItemList(
+                        Queries.returnSearch(object[searchPanel.getColumn().getSelectedIndex()-1],
                         searchPanel.getOperator().getSelectedItem().toString(),
-                        searchPanel.getColumn().getSelectedItem().equals("Validade")?convertDateToISO(searchPanel.getValor().getText()):searchPanel.getValor().getText())
+                        searchPanel.getColumn().getSelectedItem().equals("Validade")?convertDateToISO(value):value)
                     );
                     searchPanel.getPanel().setVisible(false);
                     searchPanel.update_table();
@@ -369,15 +274,15 @@ public class MyActionListener implements ActionListener{
             
             SortPanel sortPanel = Screen.getMy_CENTERpanel().getMySortPanel();
             
-            if(sortPanel.getOrdem().getSelectedIndex()==0){
+            if(sortPanel.getOrder().getSelectedIndex()==0){
                 JOptionPane.showMessageDialog(null,"Selecione se você quer ordem crescente ou descrescente.","Erro!",JOptionPane.ERROR_MESSAGE);                
             }
-            else if(sortPanel.getColuna().getSelectedIndex()==0){
+            else if(sortPanel.getColumn().getSelectedIndex()==0){
                 JOptionPane.showMessageDialog(null,"Selecione o atributo que você quer ordenar.","Erro!",JOptionPane.ERROR_MESSAGE);
             }
             else{
                 String[] objeto = new String[]{"id","nome","preco","marca","validade","quantidade","setor"};
-                sortPanel.setitemList(Queries.sortByColumn(objeto[sortPanel.getColuna().getSelectedIndex()-1], sortPanel.getOrdem().getSelectedIndex()==1));
+                sortPanel.setItemList(Queries.sortByColumn(objeto[sortPanel.getColumn().getSelectedIndex()-1], sortPanel.getOrder().getSelectedIndex()==1));
                 sortPanel.getPanel().setVisible(false);
                 sortPanel.update_table();
                 sortPanel.getPanel().setVisible(true);
@@ -473,7 +378,7 @@ public class MyActionListener implements ActionListener{
         
         s = s.trim().replace(',', '.');
 
-        return s.matches("^[0-9]+(\\.[0-9]+)?$");
+        return s.matches("^[0-9]+(\\.[0-9]+)?$");  //formatação de qualquer double possível
 
     }
 

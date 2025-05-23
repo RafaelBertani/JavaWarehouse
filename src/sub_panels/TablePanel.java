@@ -30,16 +30,14 @@ public class TablePanel{
     private int WIDTH;
     private int HEIGHT;
     private ArrayList<Object[]> data = new ArrayList<>();
-    private ArrayList<Item> item_list = new ArrayList<>();
-    private String[] columns_name = {"ID","Nome","Preço","Marca","Validade","Quantidade","Setor"};
-    private int[] columns_width = {50,100,100,100,100,100,100};
+    private ArrayList<Item> itemList = new ArrayList<>();
     
     public ArrayList<Item> getItemList(){
-        return this.item_list;
+        return this.itemList;
     }
 
-    public void setitemList(ArrayList<Item> i){
-        this.item_list=i;
+    public void setItemList(ArrayList<Item> i){
+        this.itemList=i;
     }
         
     public TablePanel(int WIDTH, int HEIGHT){
@@ -71,12 +69,15 @@ public class TablePanel{
         panelTABLE.removeAll();
         data.clear();
 
-        for(Item i : item_list){
+        String[] columnsName = {"ID","Nome","Preço","Marca","Validade","Quantidade","Setor"};
+        int[] columnsWidth = {50,100,100,100,100,100,100};
+
+        for(Item i : itemList){
             Object item[] = {i.getId(),i.getNome(),i.getPreco(),i.getMarca(),MyActionListener.convertDateToBR(i.getValidade().toString()),i.getQuantidade(),i.getSetor()};
             data.add(item);
         }
 
-        DefaultTableModel modelTABLE = new DefaultTableModel(null, columns_name);
+        DefaultTableModel modelTABLE = new DefaultTableModel(null, columnsName);
         for(int i=0;i<data.size();i++){
             modelTABLE.addRow(data.get(i));
         }
@@ -87,8 +88,8 @@ public class TablePanel{
         table.setDefaultEditor(Object.class, null);
         DefaultTableCellRenderer centralizer = new DefaultTableCellRenderer();
         centralizer.setHorizontalAlignment(SwingConstants.CENTER);
-        for(int i=0;i<columns_width.length;i++){
-            table.getColumnModel().getColumn(i).setPreferredWidth(columns_width[i]);
+        for(int i=0;i<columnsWidth.length;i++){
+            table.getColumnModel().getColumn(i).setPreferredWidth(columnsWidth[i]);
             table.getColumnModel().getColumn(i).setCellRenderer(centralizer);
         }
 

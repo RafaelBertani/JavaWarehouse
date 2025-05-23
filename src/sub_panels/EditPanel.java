@@ -30,22 +30,16 @@ public class EditPanel{
     public JRadioButton rb_validade = new JRadioButton();
     public JRadioButton rb_quantidade = new JRadioButton();
     public JRadioButton rb_setor = new JRadioButton();
-    private JLabel atual_label = new JLabel();
-    private JTextField atual_text = new JTextField();
-    private JLabel novo_label = new JLabel();
-    private JTextField novo_text = new JTextField();
+    private JLabel new_label = new JLabel();
+    private JTextField new_text = new JTextField();
     public JButton edit_btn = new JButton();
 
     public JTextField getId_text() {
         return id_text;
     }
 
-    public JTextField getAtual_text() {
-        return atual_text;
-    }
-
-    public JTextField getNovo_text() {
-        return novo_text;
+    public JTextField getNew_text() {
+        return new_text;
     }
     
     public EditPanel(int WIDTH, int HEIGHT){
@@ -68,42 +62,50 @@ public class EditPanel{
         ScreenFunctions.textfield_edit(id_text, new Font("Arial",Font.PLAIN,14), new Color(64,64,64), Color.WHITE);
         id_text.setHorizontalAlignment(JTextField.CENTER);
 
-        ScreenFunctions.radiobutton_setup(rb_nome, "Nome", 2, 4*HEIGHT/10, WIDTH/6-2, HEIGHT/10, bg_edit, panel);
-        ScreenFunctions.radiobutton_edit(rb_nome, new Font("Arial",Font.PLAIN,14), new Color(32,32,32), Color.WHITE);
+        int btnWidth = WIDTH / 6;
+        int btnHeight = HEIGHT / 10;
+        int totalBtnWidth = 3 * btnWidth;
+        int startX = (WIDTH - totalBtnWidth) / 2;
+
+        int linhaSuperiorY = 4 * HEIGHT / 10;
+        int linhaInferiorY = (int)(5.5 * HEIGHT / 10);
+
+        //nome
+        ScreenFunctions.radiobutton_setup(rb_nome, "Nome", startX + 0 * btnWidth, linhaSuperiorY, btnWidth, btnHeight, bg_edit, panel);
+        ScreenFunctions.radiobutton_edit(rb_nome, new Font("Arial", Font.PLAIN, 14), new Color(32, 32, 32), Color.WHITE);
         rb_nome.setHorizontalAlignment(JRadioButton.CENTER);
-        rb_nome.addActionListener(Screen.myActionListener);
-        ScreenFunctions.radiobutton_setup(rb_preco, "Preço", WIDTH/6, 4*HEIGHT/10, WIDTH/6, HEIGHT/10, bg_edit, panel);
-        ScreenFunctions.radiobutton_edit(rb_preco, new Font("Arial",Font.PLAIN,14), new Color(32,32,32), Color.WHITE);
+
+        //preço
+        ScreenFunctions.radiobutton_setup(rb_preco, "Preço", startX + 1 * btnWidth, linhaSuperiorY, btnWidth, btnHeight, bg_edit, panel);
+        ScreenFunctions.radiobutton_edit(rb_preco, new Font("Arial", Font.PLAIN, 14), new Color(32, 32, 32), Color.WHITE);
         rb_preco.setHorizontalAlignment(JRadioButton.CENTER);
-        rb_preco.addActionListener(Screen.myActionListener);
-        ScreenFunctions.radiobutton_setup(rb_marca, "Marca", 2*(WIDTH/6), 4*HEIGHT/10, WIDTH/6, HEIGHT/10, bg_edit, panel);
-        ScreenFunctions.radiobutton_edit(rb_marca, new Font("Arial",Font.PLAIN,14), new Color(32,32,32), Color.WHITE);
+
+        //marca
+        ScreenFunctions.radiobutton_setup(rb_marca, "Marca", startX + 2 * btnWidth, linhaSuperiorY, btnWidth, btnHeight, bg_edit, panel);
+        ScreenFunctions.radiobutton_edit(rb_marca, new Font("Arial", Font.PLAIN, 14), new Color(32, 32, 32), Color.WHITE);
         rb_marca.setHorizontalAlignment(JRadioButton.CENTER);
-        rb_marca.addActionListener(Screen.myActionListener);
-        ScreenFunctions.radiobutton_setup(rb_validade, "Validade", 3*(WIDTH/6), 4*HEIGHT/10, WIDTH/6, HEIGHT/10, bg_edit, panel);
-        ScreenFunctions.radiobutton_edit(rb_validade, new Font("Arial",Font.PLAIN,14), new Color(32,32,32), Color.WHITE);
+
+        //validade
+        ScreenFunctions.radiobutton_setup(rb_validade, "Validade", startX + 0 * btnWidth, linhaInferiorY, btnWidth, btnHeight, bg_edit, panel);
+        ScreenFunctions.radiobutton_edit(rb_validade, new Font("Arial", Font.PLAIN, 14), new Color(32, 32, 32), Color.WHITE);
         rb_validade.setHorizontalAlignment(JRadioButton.CENTER);
-        rb_validade.addActionListener(Screen.myActionListener);
-        ScreenFunctions.radiobutton_setup(rb_quantidade, "Quantidade", 4*(WIDTH/6), 4*HEIGHT/10, WIDTH/6, HEIGHT/10, bg_edit, panel);
-        ScreenFunctions.radiobutton_edit(rb_quantidade, new Font("Arial",Font.PLAIN,14), new Color(32,32,32), Color.WHITE);
+
+        //quantidade
+        ScreenFunctions.radiobutton_setup(rb_quantidade, "Quantidade", startX + 1 * btnWidth, linhaInferiorY, btnWidth, btnHeight, bg_edit, panel);
+        ScreenFunctions.radiobutton_edit(rb_quantidade, new Font("Arial", Font.PLAIN, 14), new Color(32, 32, 32), Color.WHITE);
         rb_quantidade.setHorizontalAlignment(JRadioButton.CENTER);
-        rb_quantidade.addActionListener(Screen.myActionListener);
-        ScreenFunctions.radiobutton_setup(rb_setor, "Setor", 5*(WIDTH/6), 4*HEIGHT/10, WIDTH/6-2, HEIGHT/10, bg_edit, panel);
-        ScreenFunctions.radiobutton_edit(rb_setor, new Font("Arial",Font.PLAIN,14), new Color(32,32,32), Color.WHITE);
+
+        //setor
+        ScreenFunctions.radiobutton_setup(rb_setor, "Setor", startX + 2 * btnWidth, linhaInferiorY, btnWidth, btnHeight, bg_edit, panel);
+        ScreenFunctions.radiobutton_edit(rb_setor, new Font("Arial", Font.PLAIN, 14), new Color(32, 32, 32), Color.WHITE);
         rb_setor.setHorizontalAlignment(JRadioButton.CENTER);
-        rb_setor.addActionListener(Screen.myActionListener);
 
-        ScreenFunctions.label_setup(atual_label, "Valor atual:", false, 4*WIDTH/10, 6*HEIGHT/10, WIDTH/10, HEIGHT/15, panel);
-        ScreenFunctions.label_edit(atual_label, new Font("Arial",Font.PLAIN,14), null, Color.WHITE);
-        ScreenFunctions.textfield_setup(atual_text, "", 5*WIDTH/10, 6*HEIGHT/10, WIDTH/10, HEIGHT/15, false, false, panel);
-        ScreenFunctions.textfield_edit(atual_text, new Font("Arial",Font.PLAIN,14), new Color(64,64,64), new Color(172,172,172));
-        atual_text.setHorizontalAlignment(JTextField.CENTER);
-
-        ScreenFunctions.label_setup(novo_label, "Novo valor:", false, 4*WIDTH/10, 7*HEIGHT/10, WIDTH/10, HEIGHT/15, panel);
-        ScreenFunctions.label_edit(novo_label, new Font("Arial",Font.PLAIN,14), null, Color.WHITE);
-        ScreenFunctions.textfield_setup(novo_text, "", 5*WIDTH/10, 7*HEIGHT/10, WIDTH/10, HEIGHT/15, true, false, panel);
-        ScreenFunctions.textfield_edit(novo_text, new Font("Arial",Font.PLAIN,14), new Color(64,64,64), Color.WHITE);
-        novo_text.setHorizontalAlignment(JTextField.CENTER);
+        //novo valor
+        ScreenFunctions.label_setup(new_label, "Novo valor:", false, 4*WIDTH/10, 7*HEIGHT/10, WIDTH/10, HEIGHT/15, panel);
+        ScreenFunctions.label_edit(new_label, new Font("Arial",Font.PLAIN,14), null, Color.WHITE);
+        ScreenFunctions.textfield_setup(new_text, "", 5*WIDTH/10, 7*HEIGHT/10, WIDTH/10, HEIGHT/15, true, false, panel);
+        ScreenFunctions.textfield_edit(new_text, new Font("Arial",Font.PLAIN,14), new Color(64,64,64), Color.WHITE);
+        new_text.setHorizontalAlignment(JTextField.CENTER);
      
         //OK BUTTON
         ScreenFunctions.button_setup(edit_btn, "Editar!", 4*WIDTH/10, 17*HEIGHT/20, 2*WIDTH/10, HEIGHT/10, Screen.myActionListener, panel);
@@ -111,7 +113,12 @@ public class EditPanel{
         edit_btn.setFocusable(false);
         edit_btn.setBorder(new LineBorder(new Color(0,0,0), 2));
 
+    }
 
+    public void resetFields(){
+        id_text.setText("");
+        bg_edit.clearSelection();
+        new_text.setText("");
     }
 
 }

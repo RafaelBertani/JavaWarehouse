@@ -24,7 +24,7 @@ public class LOGSpanel {
     private int WIDTH;
     private int HEIGHT;
 
-    private ArrayList<Log> item_list=new ArrayList<>();
+    private ArrayList<Log> itemList = new ArrayList<>();
     private ArrayList<Object[]> data = new ArrayList<>();
 
     public JPanel getPanel() {
@@ -39,8 +39,8 @@ public class LOGSpanel {
         return panelTABLE;
     }
 
-    public ArrayList<Log> getItem_list() {
-        return item_list;
+    public ArrayList<Log> getItemList() {
+        return itemList;
     }
 
     public LOGSpanel(int WIDTH, int HEIGHT){
@@ -55,7 +55,7 @@ public class LOGSpanel {
         panel.setBackground(new Color(32,32,32));
         panel.setBorder(new LineBorder(new Color(0,0,172), 2));
 
-        ScreenFunctions.label_setup(titleLABEL, "Histórico recente de comandos na base de dados", false, 0, 0, 7*WIDTH/10, 6*HEIGHT/100, panel);
+        ScreenFunctions.label_setup(titleLABEL, "Histórico recente de modificações na base de dados", false, 0, 0, 7*WIDTH/10, 6*HEIGHT/100, panel);
         ScreenFunctions.label_edit(titleLABEL, new Font("Arial",Font.PLAIN,20), null, Color.WHITE);
         panel.add(titleLABEL);
 
@@ -71,10 +71,10 @@ public class LOGSpanel {
         panelTABLE.removeAll();
         data.clear();
         
-        String[] columns_name = {"Tipo do comando","Comando","Timestamp"};
+        String[] columns_name = {"Tipo do Comando","Comando","Data e Hora"};
         int[] columns_width = {WIDTH/20,9*WIDTH/20,WIDTH/20};
 
-        for(Log a : item_list){
+        for(Log a : itemList){
             Object item[] = {a.getType(),a.getStatement(),a.getTimestamp()};
             data.add(item);
         }

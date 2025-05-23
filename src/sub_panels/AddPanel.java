@@ -22,25 +22,25 @@ public class AddPanel{
 
     private JLabel labelName = new JLabel();
     private JTextField name = new JTextField();
-    private JLabel labelPreco = new JLabel();
-    private JTextField preco = new JTextField();
-    private JLabel labelMarca = new JLabel();
-    private JTextField marca = new JTextField();
-    private JLabel labelValidade = new JLabel();
-    private JTextField validade = new JTextField();
-    private JLabel labelQuantidade = new JLabel();
-    private JTextField quantidade = new JTextField();
-    private JLabel labelSetor = new JLabel();
-    private JTextField setor = new JTextField();
+    private JLabel labelPrice = new JLabel();
+    private JTextField price = new JTextField();
+    private JLabel labelBrand = new JLabel();
+    private JTextField brand = new JTextField();
+    private JLabel labelExpiration = new JLabel();
+    private JTextField expiration = new JTextField();
+    private JLabel labelAmount = new JLabel();
+    private JTextField amount = new JTextField();
+    private JLabel labelSection = new JLabel();
+    private JTextField section = new JTextField();
 
     public JButton add_btn = new JButton();
 
     public JTextField getName() { return name; }
-    public JTextField getPreco() { return preco; }
-    public JTextField getMarca() { return marca; }
-    public JTextField getValidade() { return validade; }
-    public JTextField getQuantidade() { return quantidade; }
-    public JTextField getSetor() { return setor; }
+    public JTextField getPrice() { return price; }
+    public JTextField getBrand() { return brand; }
+    public JTextField getExpiration() { return expiration; }
+    public JTextField getAmount() { return amount; }
+    public JTextField getSection() { return section; }
 
     public AddPanel(int WIDTH, int HEIGHT){
 
@@ -57,46 +57,46 @@ public class AddPanel{
         ScreenFunctions.label_edit(subtitle,new Font("Arial",Font.PLAIN,20),null,Color.WHITE);
 
         //nome
-        ScreenFunctions.label_setup(labelName, "Digite o nome do item: ", false, WIDTH/20, 3*HEIGHT/10, 2*WIDTH/10, HEIGHT/15, panel);
+        ScreenFunctions.label_setup(labelName, "Digite o nome: ", false, WIDTH/20, 3*HEIGHT/10, 2*WIDTH/10, HEIGHT/15, panel);
         ScreenFunctions.label_edit(labelName, new Font("Arial",Font.PLAIN,16), null, Color.WHITE);
         labelName.setHorizontalAlignment(JLabel.RIGHT);
         ScreenFunctions.textfield_setup(name, "", WIDTH/4, 3*HEIGHT/10, 2*WIDTH/10, HEIGHT/15, true, false, panel);
         ScreenFunctions.textfield_edit(name, new Font("Arial",Font.PLAIN,16), new Color(64,64,64), Color.WHITE);
 
         //preco
-        ScreenFunctions.label_setup(labelPreco, "Digite o preço do item: ", false, 5*WIDTH/10, 3*HEIGHT/10, 2*WIDTH/10, HEIGHT/15, panel);
-        ScreenFunctions.label_edit(labelPreco, labelName.getFont(), null, Color.WHITE);
-        labelPreco.setHorizontalAlignment(JLabel.RIGHT);
-        ScreenFunctions.textfield_setup(preco, "", 3*WIDTH/4-WIDTH/20, 3*HEIGHT/10, 2*WIDTH/10, HEIGHT/15, true, false, panel);
-        ScreenFunctions.textfield_edit(preco, name.getFont(), new Color(64,64,64), Color.WHITE);
+        ScreenFunctions.label_setup(labelPrice, "Digite o preço: ", false, 5*WIDTH/10, 3*HEIGHT/10, 2*WIDTH/10, HEIGHT/15, panel);
+        ScreenFunctions.label_edit(labelPrice, labelName.getFont(), null, Color.WHITE);
+        labelPrice.setHorizontalAlignment(JLabel.RIGHT);
+        ScreenFunctions.textfield_setup(price, "", 3*WIDTH/4-WIDTH/20, 3*HEIGHT/10, 2*WIDTH/10, HEIGHT/15, true, false, panel);
+        ScreenFunctions.textfield_edit(price, name.getFont(), new Color(64,64,64), Color.WHITE);
 
         //marca
-        ScreenFunctions.label_setup(labelMarca, "Digite a marca do item: ", false, WIDTH/20, 9*HEIGHT/20, 2*WIDTH/10, HEIGHT/15, panel);
-        ScreenFunctions.label_edit(labelMarca, new Font("Arial",Font.PLAIN,16), null, Color.WHITE);
-        labelMarca.setHorizontalAlignment(JLabel.RIGHT);
-        ScreenFunctions.textfield_setup(marca, "", WIDTH/4, 9*HEIGHT/20, 2*WIDTH/10, HEIGHT/15, true, false, panel);
-        ScreenFunctions.textfield_edit(marca, new Font("Arial",Font.PLAIN,16), new Color(64,64,64), Color.WHITE);
+        ScreenFunctions.label_setup(labelBrand, "Digite a marca: ", false, WIDTH/20, 9*HEIGHT/20, 2*WIDTH/10, HEIGHT/15, panel);
+        ScreenFunctions.label_edit(labelBrand, new Font("Arial",Font.PLAIN,16), null, Color.WHITE);
+        labelBrand.setHorizontalAlignment(JLabel.RIGHT);
+        ScreenFunctions.textfield_setup(brand, "", WIDTH/4, 9*HEIGHT/20, 2*WIDTH/10, HEIGHT/15, true, false, panel);
+        ScreenFunctions.textfield_edit(brand, new Font("Arial",Font.PLAIN,16), new Color(64,64,64), Color.WHITE);
 
         //validade
-        ScreenFunctions.label_setup(labelValidade, "Digite a validade do item: ", false, 5*WIDTH/10, 9*HEIGHT/20, 2*WIDTH/10, HEIGHT/15, panel);
-        ScreenFunctions.label_edit(labelValidade, labelName.getFont(), null, Color.WHITE);
-        labelValidade.setHorizontalAlignment(JLabel.RIGHT);
-        ScreenFunctions.textfield_setup(validade, "", 3*WIDTH/4-WIDTH/20, 9*HEIGHT/20, 2*WIDTH/10, HEIGHT/15, true, false, panel);
-        ScreenFunctions.textfield_edit(validade, name.getFont(), new Color(64,64,64), Color.WHITE);
+        ScreenFunctions.label_setup(labelExpiration, "Digite a validade: ", false, 5*WIDTH/10, 9*HEIGHT/20, 2*WIDTH/10, HEIGHT/15, panel);
+        ScreenFunctions.label_edit(labelExpiration, labelName.getFont(), null, Color.WHITE);
+        labelExpiration.setHorizontalAlignment(JLabel.RIGHT);
+        ScreenFunctions.textfield_setup(expiration, "", 3*WIDTH/4-WIDTH/20, 9*HEIGHT/20, 2*WIDTH/10, HEIGHT/15, true, false, panel);
+        ScreenFunctions.textfield_edit(expiration, name.getFont(), new Color(64,64,64), Color.WHITE);
 
         //quantidade
-        ScreenFunctions.label_setup(labelQuantidade, "Digite a quantidade do item: ", false, WIDTH/20, 12*HEIGHT/20, 2*WIDTH/10, HEIGHT/15, panel);
-        ScreenFunctions.label_edit(labelQuantidade, new Font("Arial",Font.PLAIN,16), null, Color.WHITE);
-        labelQuantidade.setHorizontalAlignment(JLabel.RIGHT);
-        ScreenFunctions.textfield_setup(quantidade, "", WIDTH/4, 12*HEIGHT/20, 2*WIDTH/10, HEIGHT/15, true, false, panel);
-        ScreenFunctions.textfield_edit(quantidade, new Font("Arial",Font.PLAIN,16), new Color(64,64,64), Color.WHITE);
+        ScreenFunctions.label_setup(labelAmount, "Digite a quantidade: ", false, WIDTH/20, 12*HEIGHT/20, 2*WIDTH/10, HEIGHT/15, panel);
+        ScreenFunctions.label_edit(labelAmount, new Font("Arial",Font.PLAIN,16), null, Color.WHITE);
+        labelAmount.setHorizontalAlignment(JLabel.RIGHT);
+        ScreenFunctions.textfield_setup(amount, "", WIDTH/4, 12*HEIGHT/20, 2*WIDTH/10, HEIGHT/15, true, false, panel);
+        ScreenFunctions.textfield_edit(amount, new Font("Arial",Font.PLAIN,16), new Color(64,64,64), Color.WHITE);
 
         //setor
-        ScreenFunctions.label_setup(labelSetor, "Digite o nº do setor do item: ", false, 5*WIDTH/10, 12*HEIGHT/20, 2*WIDTH/10, HEIGHT/15, panel);
-        ScreenFunctions.label_edit(labelSetor, labelName.getFont(), null, Color.WHITE);
-        labelSetor.setHorizontalAlignment(JLabel.RIGHT);
-        ScreenFunctions.textfield_setup(setor, "", 3*WIDTH/4-WIDTH/20, 12*HEIGHT/20, 2*WIDTH/10, HEIGHT/15, true, false, panel);
-        ScreenFunctions.textfield_edit(setor, name.getFont(), new Color(64,64,64), Color.WHITE);
+        ScreenFunctions.label_setup(labelSection, "Digite o nº do setor: ", false, 5*WIDTH/10, 12*HEIGHT/20, 2*WIDTH/10, HEIGHT/15, panel);
+        ScreenFunctions.label_edit(labelSection, labelName.getFont(), null, Color.WHITE);
+        labelSection.setHorizontalAlignment(JLabel.RIGHT);
+        ScreenFunctions.textfield_setup(section, "", 3*WIDTH/4-WIDTH/20, 12*HEIGHT/20, 2*WIDTH/10, HEIGHT/15, true, false, panel);
+        ScreenFunctions.textfield_edit(section, name.getFont(), new Color(64,64,64), Color.WHITE);
 
         //OK BUTTON
         ScreenFunctions.button_setup(add_btn, "Adicionar!", 4*WIDTH/10, 8*HEIGHT/10, 2*WIDTH/10, HEIGHT/10, Screen.myActionListener, panel);
@@ -104,6 +104,15 @@ public class AddPanel{
         add_btn.setFocusable(false);
         add_btn.setBorder(new LineBorder(new Color(0,0,0), 2));
         
+    }
+
+    public void resetFields(){
+        this.name.setText("");
+        this.price.setText("");
+        this.brand.setText("");
+        this.expiration.setText("");
+        this.amount.setText("");
+        this.section.setText("");
     }
 
 }

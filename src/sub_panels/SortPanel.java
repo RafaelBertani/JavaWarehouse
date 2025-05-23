@@ -30,32 +30,31 @@ public class SortPanel{
     private JLabel subtitle = new JLabel();
     private JLabel ordem_label = new JLabel();
     private JLabel coluna_label = new JLabel();
-    private JComboBox<String> ordem = new JComboBox<>(new String[]{"--Ordem--","Crescente","Descrescente"});
-    private JComboBox<String> coluna = new JComboBox<>(new String[]{"--Coluna--","ID","Nome","Preço","Marca","Validade","Quantidade","Setor"});
+    private JComboBox<String> order = new JComboBox<>(new String[]{"--Ordem--","Crescente","Descrescente"});
+    private JComboBox<String> column = new JComboBox<>(new String[]{"--Coluna--","ID","Nome","Preço","Marca","Validade","Quantidade","Setor"});
     private JPanel panelTABLE = new JPanel();
     private JTable table = new JTable();
     private int WIDTH;
     private int HEIGHT;
     private ArrayList<Object[]> data = new ArrayList<>();
-    private ArrayList<Item> item_list = new ArrayList<>();
-    private String[] columns_name = {"ID","Nome","Preço","Marca","Validade","Quantidade","Setor"};
-    private int[] columns_width = {50,100,100,100,100,100,100};
+    private ArrayList<Item> itemList = new ArrayList<>();
+
     public JButton sort_btn = new JButton();
 
     public ArrayList<Item> getItemList(){
-        return this.item_list;
+        return this.itemList;
     }
 
-    public void setitemList(ArrayList<Item> i){
-        this.item_list=i;
+    public void setItemList(ArrayList<Item> i){
+        this.itemList=i;
     }
 
-    public JComboBox<String> getOrdem() {
-        return ordem;
+    public JComboBox<String> getOrder() {
+        return order;
     }
 
-    public JComboBox<String> getColuna() {
-        return coluna;
+    public JComboBox<String> getColumn() {
+        return column;
     }
 
     public SortPanel(int WIDTH, int HEIGHT){
@@ -77,12 +76,12 @@ public class SortPanel{
 
         ScreenFunctions.label_setup(ordem_label, "Ordenar os itens em ordem", false, 3*WIDTH/20, 3*HEIGHT/10, WIDTH/5, HEIGHT/15, panel);
         ScreenFunctions.label_edit(ordem_label, new Font("Arial",Font.PLAIN,14), null, Color.WHITE);
-        ScreenFunctions.combobox_setup(ordem, 7*WIDTH/20, 3*HEIGHT/10, 3*WIDTH/20, HEIGHT/15, 3, 0, panel);
-        ScreenFunctions.combobox_edit(ordem, new Font("Arial",Font.PLAIN,14), new Color(64,64,64), Color.WHITE);
+        ScreenFunctions.combobox_setup(order, 7*WIDTH/20, 3*HEIGHT/10, 3*WIDTH/20, HEIGHT/15, 3, 0, panel);
+        ScreenFunctions.combobox_edit(order, new Font("Arial",Font.PLAIN,14), new Color(64,64,64), Color.WHITE);
         ScreenFunctions.label_setup(coluna_label, "de acordo com a coluna", false, (int)(5*WIDTH/10*1.05), 3*HEIGHT/10, 3*WIDTH/20, HEIGHT/15, panel);
         ScreenFunctions.label_edit(coluna_label, new Font("Arial",Font.PLAIN,14), null, Color.WHITE);
-        ScreenFunctions.combobox_setup(coluna, 7*WIDTH/10, 3*HEIGHT/10, 3*WIDTH/20, HEIGHT/15, 8, 0, panel);
-        ScreenFunctions.combobox_edit(coluna, new Font("Arial",Font.PLAIN,14), new Color(64,64,64), Color.WHITE);
+        ScreenFunctions.combobox_setup(column, 7*WIDTH/10, 3*HEIGHT/10, 3*WIDTH/20, HEIGHT/15, 8, 0, panel);
+        ScreenFunctions.combobox_edit(column, new Font("Arial",Font.PLAIN,14), new Color(64,64,64), Color.WHITE);
         
         //OK SORT
         ScreenFunctions.button_setup(sort_btn, "Ordenar!", WIDTH/2-WIDTH/10, 17*HEIGHT/20, WIDTH/5, HEIGHT/10, Screen.myActionListener, panel);
@@ -102,12 +101,15 @@ public class SortPanel{
         panelTABLE.removeAll();
         data.clear();
 
-        for(Item i : item_list){
+        String[] columnsName = {"ID","Nome","Preço","Marca","Validade","Quantidade","Setor"};
+        int[] columnsWidth = {50,100,100,100,100,100,100};
+
+        for(Item i : itemList){
             Object item[] = {i.getId(),i.getNome(),i.getPreco(),i.getMarca(),MyActionListener.convertDateToBR(i.getValidade().toString()),i.getQuantidade(),i.getSetor()};
             data.add(item);
         }
 
-        DefaultTableModel modelTABLE = new DefaultTableModel(null, columns_name);
+        DefaultTableModel modelTABLE = new DefaultTableModel(null, columnsName);
         for(int i=0;i<data.size();i++){
             modelTABLE.addRow(data.get(i));
         }
@@ -118,8 +120,8 @@ public class SortPanel{
         table.setDefaultEditor(Object.class, null);
         DefaultTableCellRenderer centralizer = new DefaultTableCellRenderer();
         centralizer.setHorizontalAlignment(SwingConstants.CENTER);
-        for(int i=0;i<columns_width.length;i++){
-            table.getColumnModel().getColumn(i).setPreferredWidth(columns_width[i]);
+        for(int i=0;i<columnsWidth.length;i++){
+            table.getColumnModel().getColumn(i).setPreferredWidth(columnsWidth[i]);
             table.getColumnModel().getColumn(i).setCellRenderer(centralizer);
         }
 

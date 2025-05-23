@@ -34,14 +34,13 @@ public class SearchPanel{
     private int WIDTH;
     private int HEIGHT;
     private ArrayList<Object[]> data = new ArrayList<>();
-    private ArrayList<Item> item_list = new ArrayList<>();
-    private String[] columns_name = {"ID","Nome","Preço","Marca","Validade","Quantidade","Setor"};
-    private int[] columns_width = {50,100,100,100,100,100,100};
+    private ArrayList<Item> itemList = new ArrayList<>();
     
     private JLabel explanation = new JLabel();
     private JComboBox<String> column = new JComboBox<>(new String[]{"--Coluna--","ID","Nome","Preço","Marca","Validade","Quantidade","Setor"});
     private JComboBox<String> operator = new JComboBox<>(new String[]{"--Operador--","=",">",">=","<","<="});
-    private JTextField valor = new JTextField();
+    private JTextField value = new JTextField();
+    
     public JButton src_btn = new JButton();
 
     public JComboBox<String> getColumn() {
@@ -52,16 +51,16 @@ public class SearchPanel{
         return operator;
     }
 
-    public JTextField getValor() {
-        return valor;
+    public JTextField getValue() {
+        return value;
     }
 
     public ArrayList<Item> getItemList(){
-        return this.item_list;
+        return this.itemList;
     }
 
-    public void setitemList(ArrayList<Item> i){
-        this.item_list=i;
+    public void setItemList(ArrayList<Item> i){
+        this.itemList=i;
     }
     
     public SearchPanel(int WIDTH, int HEIGHT){
@@ -91,9 +90,9 @@ public class SearchPanel{
         ScreenFunctions.combobox_setup(operator, WIDTH/2-WIDTH/16, HEIGHT/3, WIDTH/8, HEIGHT/20, 6, 0, panel);
         ScreenFunctions.combobox_edit(operator, new Font("Arial",Font.PLAIN,14), new Color(64,64,64), Color.WHITE);
         //valor
-        ScreenFunctions.textfield_setup(valor, "", 3*WIDTH/4-WIDTH/8, HEIGHT/3, WIDTH/8, HEIGHT/20, true, false, panel);
-        ScreenFunctions.textfield_edit(valor, new Font("Arial",Font.PLAIN,14), new Color(64,64,64), Color.WHITE);
-        valor.setHorizontalAlignment(JTextField.CENTER);
+        ScreenFunctions.textfield_setup(value, "", 3*WIDTH/4-WIDTH/8, HEIGHT/3, WIDTH/8, HEIGHT/20, true, false, panel);
+        ScreenFunctions.textfield_edit(value, new Font("Arial",Font.PLAIN,14), new Color(64,64,64), Color.WHITE);
+        value.setHorizontalAlignment(JTextField.CENTER);
 
         //botão
         ScreenFunctions.button_setup(src_btn, "Buscar!", WIDTH/2-WIDTH/10, 17*HEIGHT/20, WIDTH/5, HEIGHT/10, Screen.myActionListener, panel);
@@ -113,12 +112,15 @@ public class SearchPanel{
         panelTABLE.removeAll();
         data.clear();
 
-        for(Item i : item_list){
+        String[] columnsName = {"ID","Nome","Preço","Marca","Validade","Quantidade","Setor"};
+        int[] columnsWidth = {50,100,100,100,100,100,100};
+
+        for(Item i : itemList){
             Object item[] = {i.getId(),i.getNome(),i.getPreco(),i.getMarca(),MyActionListener.convertDateToBR(i.getValidade().toString()),i.getQuantidade(),i.getSetor()};
             data.add(item);
         }
 
-        DefaultTableModel modelTABLE = new DefaultTableModel(null, columns_name);
+        DefaultTableModel modelTABLE = new DefaultTableModel(null, columnsName);
         for(int i=0;i<data.size();i++){
             modelTABLE.addRow(data.get(i));
         }
@@ -129,8 +131,8 @@ public class SearchPanel{
         table.setDefaultEditor(Object.class, null);
         DefaultTableCellRenderer centralizer = new DefaultTableCellRenderer();
         centralizer.setHorizontalAlignment(SwingConstants.CENTER);
-        for(int i=0;i<columns_width.length;i++){
-            table.getColumnModel().getColumn(i).setPreferredWidth(columns_width[i]);
+        for(int i=0;i<columnsWidth.length;i++){
+            table.getColumnModel().getColumn(i).setPreferredWidth(columnsWidth[i]);
             table.getColumnModel().getColumn(i).setCellRenderer(centralizer);
         }
 

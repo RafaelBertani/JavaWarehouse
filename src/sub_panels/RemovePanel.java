@@ -41,7 +41,7 @@ public class RemovePanel{
         ScreenFunctions.label_setup(subtitle, "Remover item", false, 0, HEIGHT/10, WIDTH, HEIGHT/8, panel);
         ScreenFunctions.label_edit(subtitle,new Font("Arial",Font.PLAIN,20),null,Color.WHITE);
 
-        ScreenFunctions.label_setup(id_label, "ID do item que deseja remover:", false, 7*WIDTH/20+40, 4*HEIGHT/10, WIDTH/5, HEIGHT/15, panel);
+        ScreenFunctions.label_setup(id_label, "ID do item a ser removido:", false, 7*WIDTH/20+40, 4*HEIGHT/10, WIDTH/5, HEIGHT/15, panel);
         ScreenFunctions.label_edit(id_label, new Font("Arial",Font.PLAIN,14), null, Color.WHITE);
         ScreenFunctions.textfield_setup(id_text, "", 11*WIDTH/20+40, 4*HEIGHT/10, WIDTH/25, HEIGHT/15, true, false, panel);
         ScreenFunctions.textfield_edit(id_text, new Font("Arial",Font.PLAIN,14), new Color(64,64,64), Color.WHITE);
@@ -53,6 +53,10 @@ public class RemovePanel{
         remove_btn.setFocusable(false);
         remove_btn.setBorder(new LineBorder(new Color(0,0,0), 2));
         
+    }
+
+    public void resetFields(){
+        id_text.setText("");
     }
 
 }

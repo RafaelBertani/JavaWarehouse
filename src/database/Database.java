@@ -4,6 +4,13 @@ import java.sql.*;
 
 public class Database {
 
+    //LOCAL
+    public static String url = "jdbc:mysql://localhost:3306/";
+    public static String databaseName = "my_db";
+    public static String tableName = "produtos";
+    public static String userName = "root";
+    public static String password = "db#1post"; // "imtdb" SENHA NOS COMPUTADORES IMT
+
     public static Connection getConnection(){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -22,12 +29,6 @@ public class Database {
             throw new RuntimeException("Erro, não foi possível fechar o banco de dados."+ErroSQL);
         }
     }
-
-    //LOCAL
-    public static String url = "jdbc:mysql://localhost:3306/";
-    public static String databaseName = "my_db";
-    public static String userName = "root";
-    public static String password = ""; //"mysqlimt"; SENHA NOS COMPUTADORES IMT
 
     public static void createDATABASE() throws Exception{
         
@@ -66,13 +67,13 @@ public class Database {
             tablesResult = meta.getTables(null, null, "%", new String[] {"TABLE"});
 
             while(tablesResult.next()) {
-                if(tablesResult.getString("TABLE_NAME").equals("produtos")) {
+                if(tablesResult.getString("TABLE_NAME").equals(Database.databaseName)) {
                     tabelaPresente = true;
                 }
             }
 
             if(!tabelaPresente) {
-                String sql = "CREATE TABLE produtos (id INT AUTO_INCREMENT NOT NULL, nome VARCHAR(50) NOT NULL, preco DECIMAL(9,2) NOT NULL, marca VARCHAR(50) NOT NULL, validade DATE, quantidade INT NOT NULL, setor INT NOT NULL, PRIMARY KEY (id) )";
+                String sql = "CREATE TABLE "+ Database.tableName +" (id INT AUTO_INCREMENT NOT NULL, nome VARCHAR(50) NOT NULL, preco DECIMAL(9,2) NOT NULL, marca VARCHAR(50) NOT NULL, validade DATE NOT NULL, quantidade INT NOT NULL, setor INT NOT NULL, PRIMARY KEY (id) )";
                 Statement statement = connection.createStatement();
                 statement.executeUpdate(sql);
                 statement.close();
@@ -82,7 +83,7 @@ public class Database {
                 System.out.println("Table already created");
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Table already exists");
         }
     }
     

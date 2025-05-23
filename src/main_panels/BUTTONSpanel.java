@@ -10,14 +10,14 @@ public class BUTTONSpanel {
     
     /*
     * 
-    * Nesta classe o painel de botões é criado
+    * Nesta classe o painel de botões é preenchido
     * 
     */
 
     //este é o painel que receberá todos os botões
     private final JPanel panel;
 
-    // este getPanel que retorna o painel criado para ser adicionado ao mainPANEL fora dessa classe
+    // este getPanel que retorna o painel preparado para ser adicionado ao mainPANEL fora dessa classe
     public JPanel getPanel() {
         return panel;
     }
@@ -56,8 +56,8 @@ public class BUTTONSpanel {
 
     public BUTTONSpanel(int WIDTH, int HEIGHT){
 
-        //define  altura padrão de um botão
-        int button_height = (35*HEIGHT/40)/8;
+        //define a altura padrão de um botão
+        int button_height = (35*HEIGHT/40)/6;
 
         panel = new JPanel();
         panel.setBounds(0, HEIGHT/40, WIDTH/5, 35*HEIGHT/40);
@@ -69,78 +69,78 @@ public class BUTTONSpanel {
         ADDbutton = new JButton();
         ScreenFunctions.button_setup(ADDbutton, "Adicionar item", 0, 0, WIDTH/5, button_height, Screen.myActionListener, panel);
         ScreenFunctions.button_edit(ADDbutton, new Font("Arial",Font.PLAIN,16), new Color(32,32,32), Color.WHITE);
-        ADDbutton.setFocusable(false);
         ADDbutton.setBorder(null);
         ADDbutton.addMouseListener(Screen.myMouseListener);
         //remover preenchimento automático de fundo quando clicar
         ADDbutton.setFocusPainted(false);
         ADDbutton.setContentAreaFilled(false);
         ADDbutton.setOpaque(true);
+        //adiciona botão no painel BUTTONSpanel
         panel.add(ADDbutton);
 
         //cria e edita botão EDITAR
         EDITbutton = new JButton();
         ScreenFunctions.button_setup(EDITbutton, "Editar item", 0, 1*button_height, WIDTH/5, button_height, Screen.myActionListener, panel);
         ScreenFunctions.button_edit(EDITbutton, new Font("Arial",Font.PLAIN,16), new Color(32,32,32), Color.WHITE);
-        EDITbutton.setFocusable(false);
         EDITbutton.setBorder(null);
         EDITbutton.addMouseListener(Screen.myMouseListener);
         //remover preenchimento automático de fundo quando clicar
         EDITbutton.setFocusPainted(false);
         EDITbutton.setContentAreaFilled(false);
         EDITbutton.setOpaque(true);
+        //adiciona botão no painel BUTTONSpanel
         panel.add(EDITbutton);
 
         //cria e edita botão REMOVER
         REMOVEbutton = new JButton();
         ScreenFunctions.button_setup(REMOVEbutton, "Remover item", 0, 2*button_height, WIDTH/5, button_height, Screen.myActionListener, panel);
         ScreenFunctions.button_edit(REMOVEbutton, new Font("Arial",Font.PLAIN,16), new Color(32,32,32), Color.WHITE);
-        REMOVEbutton.setFocusable(false);
         REMOVEbutton.setBorder(null);
         REMOVEbutton.addMouseListener(Screen.myMouseListener);
         //remover preenchimento automático de fundo quando clicar
         REMOVEbutton.setFocusPainted(false);
         REMOVEbutton.setContentAreaFilled(false);
         REMOVEbutton.setOpaque(true);
+        //adiciona botão no painel BUTTONSpanel
         panel.add(REMOVEbutton);
 
         //cria e edita botão VER TABELA
         TABLEbutton = new JButton();
         ScreenFunctions.button_setup(TABLEbutton, "Ver tabela de items", 0, 3*button_height, WIDTH/5, button_height, Screen.myActionListener, panel);
         ScreenFunctions.button_edit(TABLEbutton, new Font("Arial",Font.PLAIN,16), new Color(32,32,32), Color.WHITE);
-        TABLEbutton.setFocusable(false);
         TABLEbutton.setBorder(null);
         TABLEbutton.addMouseListener(Screen.myMouseListener);
         //remover preenchimento automático de fundo quando clicar
         TABLEbutton.setFocusPainted(false);
         TABLEbutton.setContentAreaFilled(false);
         TABLEbutton.setOpaque(true);
+        //adiciona botão no painel BUTTONSpanel
         panel.add(TABLEbutton);
 
         //cria e edita botão BUSCAR
         SEARCHbutton = new JButton();
         ScreenFunctions.button_setup(SEARCHbutton, "Buscar itens", 0, 4*button_height, WIDTH/5, button_height, Screen.myActionListener, panel);
         ScreenFunctions.button_edit(SEARCHbutton, new Font("Arial",Font.PLAIN,16), new Color(32,32,32), Color.WHITE);
-        SEARCHbutton.setFocusable(false);
         SEARCHbutton.setBorder(null);
         SEARCHbutton.addMouseListener(Screen.myMouseListener);
         //remover preenchimento automático de fundo quando clicar
         SEARCHbutton.setFocusPainted(false);
         SEARCHbutton.setContentAreaFilled(false);
         SEARCHbutton.setOpaque(true);
+        //adiciona botão no painel BUTTONSpanel
         panel.add(SEARCHbutton);
 
         //cria e edita botão ORDENAR
         SORTbutton = new JButton();
         ScreenFunctions.button_setup(SORTbutton, "Ordenar por", 0, 5*button_height, WIDTH/5, button_height, Screen.myActionListener, panel);
         ScreenFunctions.button_edit(SORTbutton, new Font("Arial",Font.PLAIN,16), new Color(32,32,32), Color.WHITE);
-        SORTbutton.setFocusable(false);
         SORTbutton.setBorder(null);
         SORTbutton.addMouseListener(Screen.myMouseListener);
         //remover preenchimento automático de fundo quando clicar
         SORTbutton.setFocusPainted(false);
         SORTbutton.setContentAreaFilled(false);
         SORTbutton.setOpaque(true);
+        //adiciona botão no painel BUTTONSpanel
         panel.add(SORTbutton);
         
     }

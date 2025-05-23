@@ -19,7 +19,7 @@ public class Queries {
         PreparedStatement pstm = null;
         ResultSet resultQUERY = null;
         try{ 
-            pstm = c.prepareStatement("insert into produtos (nome, preco, marca, validade, quantidade, setor) values (?,?,?,?,?,?)");
+            pstm = c.prepareStatement("insert into "+ Database.tableName +" (nome, preco, marca, validade, quantidade, setor) values (?,?,?,?,?,?)");
             pstm.setString(1, i.getNome());
             pstm.setDouble(2, i.getPreco());
             pstm.setString(3, i.getMarca());
@@ -28,11 +28,12 @@ public class Queries {
             pstm.setInt(6, i.getSetor());
             pstm.execute();
 
-            pstm = c.prepareStatement("SELECT MAX( id ) FROM produtos;");
+            pstm = c.prepareStatement("SELECT MAX( id ) FROM "+ Database.tableName + ";");
             resultQUERY = pstm.executeQuery();
             resultQUERY.next();
 
-            Screen.getMy_LOGSpanel().getItem_list().add(new Log("INSERT", "insert into produtos (nome, preco, marca, validade quantidade, setor) values ("+i.getNome()+", "+i.getPreco()+", "+i.getMarca()+", "+i.getValidade()+", "+i.getQuantidade()+", "+i.getSetor()+")", Log.current_timestamp()));
+            //adiciona o registro dessa ação na tabela de LOGSpanel
+            Screen.getMy_LOGSpanel().getItemList().add(new Log("INSERT", "insert into "+ Database.tableName + " (nome, preco, marca, validade quantidade, setor) values ("+i.getNome()+", "+i.getPreco()+", "+i.getMarca()+", "+i.getValidade()+", "+i.getQuantidade()+", "+i.getSetor()+")", Log.currentTimestamp()));
             Screen.getMy_LOGSpanel().getPanel().setVisible(false);
             Screen.getMy_LOGSpanel().update_table();
             Screen.getMy_LOGSpanel().getPanel().setVisible(true);
@@ -53,10 +54,11 @@ public class Queries {
         Connection c = Database.getConnection();
         PreparedStatement pstm = null;
         try {
-            pstm = c.prepareStatement("update produtos set "+column+"='"+newINFO+"' where id="+id);
+            pstm = c.prepareStatement("update "+ Database.tableName +" set "+column+"='"+newINFO+"' where id="+id);
             pstm.execute();
 
-            Screen.getMy_LOGSpanel().getItem_list().add(new Log("UPDATE", "update produtos set "+column+"='"+newINFO+"' where id="+id, Log.current_timestamp()));
+            //adiciona o registro dessa ação na tabela de LOGSpanel
+            Screen.getMy_LOGSpanel().getItemList().add(new Log("UPDATE", "update "+ Database.tableName +" set "+column+"='"+newINFO+"' where id="+id, Log.currentTimestamp()));
             Screen.getMy_LOGSpanel().getPanel().setVisible(false);
             Screen.getMy_LOGSpanel().update_table();
             Screen.getMy_LOGSpanel().getPanel().setVisible(true);
@@ -77,10 +79,11 @@ public class Queries {
         Connection c = Database.getConnection();
         PreparedStatement pstm = null;
         try{ 
-            pstm = c.prepareStatement("delete from produtos where id="+id);
+            pstm = c.prepareStatement("delete from "+ Database.tableName +" where id="+id);
             pstm.execute();
 
-            Screen.getMy_LOGSpanel().getItem_list().add(new Log("DELETE", "delete from produtos where id="+id, Log.current_timestamp()));
+            //adiciona o registro dessa ação na tabela de LOGSpanel
+            Screen.getMy_LOGSpanel().getItemList().add(new Log("DELETE", "delete from "+ Database.tableName +" where id="+id, Log.currentTimestamp()));
             Screen.getMy_LOGSpanel().getPanel().setVisible(false);
             Screen.getMy_LOGSpanel().update_table();
             Screen.getMy_LOGSpanel().getPanel().setVisible(true);
@@ -94,7 +97,7 @@ public class Queries {
         
     }
 
-    public static ArrayList<Item> retorna_busca(String column, String operator, String value){
+    public static ArrayList<Item> returnSearch(String column, String operator, String value){
         
         ArrayList<Item> resultados = new ArrayList<>();
         Connection c = Database.getConnection();
@@ -102,9 +105,12 @@ public class Queries {
         ResultSet resultQUERY = null;
         try{
             
-            if(column.equals("validade")){value="\'"+value+"\'";}
+            //para fazer comparações com variáveis do tipo DATE e VARCHAR é necessário que estajam entre aspas simples
+            if(column.equals("validade") || column.equals("marca")  || column.equals("marca")){
+                value="\'"+value+"\'";
+            }
 
-            pstm = c.prepareStatement("select * from produtos where "+column+operator+value);
+            pstm = c.prepareStatement("select * from "+ Database.tableName +" where "+column+operator+value);
             resultQUERY=pstm.executeQuery();
             while(resultQUERY.next()){
                 //indexes começam no 1, ou seja, 1=id
@@ -136,7 +142,7 @@ public class Queries {
         ResultSet resultQUERY = null;
         try{
             
-            pstm = c.prepareStatement("select * from produtos");
+            pstm = c.prepareStatement("select * from "+ Database.tableName);
             resultQUERY=pstm.executeQuery();
             while(resultQUERY.next()){
                 //indexes começam no 1, ou seja, 1=id
@@ -160,28 +166,6 @@ public class Queries {
         return resultados;
     }
 
-    public static String returnSpecificValue(int id, String column){
-        
-        String result = "";
-
-        Connection c = Database.getConnection();
-        PreparedStatement pstm = null;
-        ResultSet resultQUERY = null;
-        
-        try{ 
-            pstm = c.prepareStatement("SELECT "+column+" FROM produtos WHERE id="+id);
-            resultQUERY=pstm.executeQuery();
-            while(resultQUERY.next()){
-                result=resultQUERY.getString(1);
-            }
-        }catch(SQLException e){
-            e.printStackTrace();
-        }finally{Database.closeConnection(c);}
-
-        return result;
-
-    }
-
     public static ArrayList<Item> sortByColumn(String column, boolean ASC){
         
         ArrayList<Item> resultados = new ArrayList<>();
@@ -190,8 +174,8 @@ public class Queries {
         ResultSet resultQUERY = null;
         Item novo;
         try{ 
-            if(ASC){pstm = c.prepareStatement("SELECT * FROM produtos ORDER BY "+ column +" ASC");}
-            else{pstm = c.prepareStatement("SELECT * FROM produtos ORDER BY "+ column +" DESC");}
+            if(ASC){pstm = c.prepareStatement("SELECT * FROM "+ Database.tableName +" ORDER BY "+ column +" ASC");}
+            else{pstm = c.prepareStatement("SELECT * FROM "+ Database.tableName +" ORDER BY "+ column +" DESC");}
             resultQUERY=pstm.executeQuery();
             while(resultQUERY.next()){
                 //indexes começam no 1, ou seja, 1=id

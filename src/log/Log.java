@@ -1,5 +1,4 @@
 package log;
-//import java.awt.List;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -35,7 +34,7 @@ public class Log {
         return timestamp;
     }
 
-    public static String current_timestamp(){
+    public static String currentTimestamp(){
         LocalDateTime agora = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss");
 

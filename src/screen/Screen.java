@@ -1,4 +1,5 @@
 package screen;
+
 import java.awt.Color;
 import javax.swing.*;
 import listeners.MyActionListener;
@@ -9,7 +10,6 @@ import main_panels.LOGSpanel;
 
 public class Screen extends JFrame{
 
-    //JCOMPONENTS
     private static final JFrame MAINframe = new JFrame();
     private static final JPanel MAINpanel = new JPanel();
     private static BUTTONSpanel my_BUTTONSpanel;
@@ -54,8 +54,7 @@ public class Screen extends JFrame{
         my_CENTERpanel = new CENTERpanel(WIDTH,HEIGHT);
         MAINpanel.add(my_CENTERpanel.getPanel());
 
-
-        //durante o programa, será usado a classe ScreenFunctions para facilitar a criação de elementos visuais
+        //durante o programa, será usado a nossa classe ScreenFunctions para facilitar a criação de elementos visuais
 
         //após estar com todos os elementos adicionados, o painel principal (MAINpanel) é criado e adicionado ao frame principal
         ScreenFunctions.panel_setup(MAINpanel, MAINframe, 0, 0, WIDTH/5, HEIGHT);
