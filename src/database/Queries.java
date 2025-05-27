@@ -106,7 +106,7 @@ public class Queries {
         try{
             
             //para fazer comparações com variáveis do tipo DATE e VARCHAR é necessário que estajam entre aspas simples
-            if(column.equals("validade") || column.equals("marca")  || column.equals("marca")){
+            if(column.equals("validade") || column.equals("marca")  || column.equals("nome")){
                 value="\'"+value+"\'";
             }
 

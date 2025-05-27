@@ -32,6 +32,7 @@ public class Main{
         }
         Database.createTABLE(); //cria tabela, caso ainda não exista
 
+
         //inicializa a tela
         new Screen(width,height);
     
