@@ -127,7 +127,7 @@ public class MyActionListener implements ActionListener{
             else if( editPanel.rb_preco.isSelected() && !doubleValid(new_value.replace(',','.')) ){
                 JOptionPane.showMessageDialog(null,"O preço deve conter apenas números\nExemplo: 123 ou 456.78","Erro!",JOptionPane.ERROR_MESSAGE);
             }
-            else if( editPanel.rb_validade.isSelected() && !integerValid(new_value)){
+            else if( editPanel.rb_quantidade.isSelected() && !integerValid(new_value)){
                 JOptionPane.showMessageDialog(null,"A quantidade deve conter apenas números inteiros\nExemplo: 123","Erro!",JOptionPane.ERROR_MESSAGE);                
             }
             else if( editPanel.rb_setor.isSelected() && !integerValid(new_value) ) {
