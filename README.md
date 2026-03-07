@@ -34,3 +34,4 @@ Example:
 ```java
 private static final String USER = "your_mysql_user_here";
 private static final String PASSWORD = "your_mysql_password_here";
+```
