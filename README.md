@@ -11,7 +11,7 @@
 -  **Remove Item**: Delete an item from the database.
 -  **Search Item**: Search for items by name or other fields.
 -  **View Table**: Display all items in a table format.
--  **Sort Items**: Sort items by name, category, quantity, or price.
+-  **Sort Items**: Sort items by name, category, quantity or price.
 -  **View History**: Display a log of recent modifications made to the database.
 
 ---
