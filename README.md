@@ -1,4 +1,4 @@
-# JavaWarehouse
+# JavaWarehouse - CRUD
 
 **JavaWarehouse** is a Java-based warehouse management system that uses a MySQL database to store and manage inventory data. It allows users to add, edit, remove, and search for items, as well as view sorted tables and recent modification history.
 
