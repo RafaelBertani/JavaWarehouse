@@ -9,7 +9,7 @@ public class Database {
     public static String databaseName = "my_db";
     public static String tableName = "produtos";
     public static String userName = "root";
-    public static String password = "db#1post"; // "imtdb" SENHA NOS COMPUTADORES IMT
+    public static String password = "";
 
     public static Connection getConnection(){
         try {
