@@ -4,12 +4,12 @@ import java.sql.*;
 
 public class Database {
 
-    //LOCAL
-    public static String url = "jdbc:mysql://localhost:3306/";
+    //AWS
+    public static String url = "jdbc:mysql://<YOUR-RDS-ENDPOINT.rds.amazonaws.com>:3306/";
     public static String databaseName = "my_db";
     public static String tableName = "produtos";
-    public static String userName = "root";
-    public static String password = "";
+    public static String userName = "admin";
+    public static String password = "YOUR_RDS_PASSWORD_HERE";
 
     public static Connection getConnection(){
         try {
