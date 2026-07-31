@@ -1,0 +1,78 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Infraestrutura RDS MySQL + SSM Parameter Store para o Sandbox do AWS Academy'
+
+Parameters:
+  DBMasterUsername:
+    Type: String
+    Default: admin
+    Description: Nome de usuario master do banco de dados
+
+  DBMasterPassword:
+    Type: String
+    NoEcho: true
+    MinLength: 8
+    Description: Senha do usuario master (minimo 8 caracteres)
+
+Resources:
+  # Security Group liberando a porta do MySQL (3306)
+  DBSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Permite conexao MySQL na porta 3306
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 3306
+          ToPort: 3306
+          CidrIp: 0.0.0.0/0 
+
+  RDSInstance:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      DBInstanceIdentifier: meu-banco-java-rds
+      Engine: mysql
+      EngineVersion: '8.0'
+      DBInstanceClass: db.t3.micro
+      AllocatedStorage: '20'
+      StorageType: gp2
+      DBName: my_db  
+      MasterUsername: !Ref DBMasterUsername
+      MasterUserPassword: !Ref DBMasterPassword
+      VPCSecurityGroups:
+        - !GetAtt DBSecurityGroup.GroupId
+      PubliclyAccessible: true       
+      MultiAZ: false              
+      MonitoringInterval: 0           
+      BackupRetentionPeriod: 0    
+      DeletionProtection: false
+
+  SSMParamDBHost:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: /app/database/url
+      Type: String
+      Value: !GetAtt RDSInstance.Endpoint.Address
+      Description: Endpoint de conexao do RDS MySQL
+
+  SSMParamDBUser:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: /app/database/username
+      Type: String
+      Value: !Ref DBMasterUsername
+      Description: Usuario do banco de dados
+
+  SSMParamDBPassword:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: /app/database/password
+      Type: String
+      Value: !Ref DBMasterPassword
+      Description: Senha do banco de dados
+
+Outputs:
+  RDSEndpoint:
+    Description: Endpoint para conexao no MySQL RDS
+    Value: !GetAtt RDSInstance.Endpoint.Address
+  DatabaseName:
+    Description: Nome do Banco de Dados Criado
+    Value: my_db
